@@ -20,7 +20,7 @@ $ npm install node-gitlab
 var gitlab = require('node-gitlab');
 
 var client = gitlab.create({
-  api: 'http://gitlab.com/api/v3',
+  api: 'https://gitlab.com/api/v3',
   privateToken: 'your private token'
 });
 client.milestone.list({id: 1}, function (err, milestones) {

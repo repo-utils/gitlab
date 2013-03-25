@@ -10,21 +10,17 @@
  * Module dependencies.
  */
 
-var gitlab = require('../');
+var client = require('./client');
 var should = require('should');
 
 describe('milestone.test.js', function () {
 
-  var client = gitlab.create({
-    api: 'http://gitlab.alibaba-inc.com/api/v3',
-    privateToken: 'zRJ22msZ3Gyfxnrauavx',
-  });
-  
   describe('client.milestones.get()', function () {
 
     it('should return a milestone', function (done) {
-      client.milestones.get({id: 205, milestone_id: 7}, function (err, milestone) {
+      client.milestones.get({id: 223, milestone_id: 66}, function (err, milestone) {
         should.not.exists(err);
+        milestone.should.have.property('id');
         milestone.should.have.keys('id', 'project_id', 'title', 'description',
           'due_date', 'closed', 'updated_at', 'created_at');
         done();
@@ -57,8 +53,8 @@ describe('milestone.test.js', function () {
         due_date: '2013-02-14',
       }, function (err, milestone) {
         should.not.exists(err);
-        milestone.should.have.keys('id', 'project_id', 'title', 'description',
-          'due_date', 'closed', 'updated_at', 'created_at');
+        milestone.should.have.property('id');
+        milestone.should.have.property('project_id', 223);
         milestone.closed.should.equal(false);
         milestone.due_date.should.equal('2013-02-14');
         client.milestones.update({
@@ -67,7 +63,8 @@ describe('milestone.test.js', function () {
           title: milestone.title + ' || test update milestone' + new Date(),
           description: milestone.description + ' || \n ## description for update milestone' + new Date(),
           due_date: '2013-02-15',
-          closed: true,
+          closed: '1',
+          state: 'closed',
         }, function (err, milestone) {
           should.not.exists(err);
           milestone.should.have.keys('id', 'project_id', 'title', 'description',

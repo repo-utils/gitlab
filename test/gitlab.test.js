@@ -10,16 +10,14 @@
  * Module dependencies.
  */
 
-var gitlab = require('../');
+var client = require('./client');
 var should = require('should');
 
 describe('gitlab.test.js', function () {
 
-  var client = gitlab.create(require('./config'));
-  
   describe('Client.request()', function () {
     it('should request success', function (done) {
-      client.request('get', '/projects/:id/milestones', {id: 205}, function (err, milestones) {
+      client.request('get', '/projects/:id/milestones', {id: 223}, function (err, milestones) {
         should.not.exists(err);
         milestones.length.should.above(0);
         done();
@@ -39,7 +37,7 @@ describe('gitlab.test.js', function () {
     it('should request 401 error when token wrong', function (done) {
       var token = client.privateToken;
       client.privateToken = 'wrongToken';
-      client.request('get', '/projects/:id/milestones', {id: 205}, function (err, milestones) {
+      client.request('get', '/projects/:id/milestones', {id: 223}, function (err, milestones) {
         client.privateToken = token;
         should.exists(err);
         err.name.should.equal('Gitlab401Error');
