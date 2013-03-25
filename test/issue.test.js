@@ -37,7 +37,6 @@ describe('issue.test.js', function () {
         should.not.exists(err);
         issues.length.should.above(0);
         var row = issues[0];
-        row.id.should.equal(1098);
         row.should.have.keys('id', 'project_id', 'title', 'description', 'labels', 
           'milestone', 'assignee', 'author', 'closed', 
           'updated_at', 'created_at');
@@ -48,16 +47,17 @@ describe('issue.test.js', function () {
   });
 
   describe('client.issues.create(), update()', function () {
-    it.skip('should create, update a issue', function (done) {
+    it('should create, update a issue', function (done) {
       client.issues.create({
-        id: 223, titie: 'test title', 
-        // description: 'description',
-        // assignee_id: 142, milestone_id: 117, labels: 'test,gitlabapi'
+        id: 223, title: 'test title ' + new Date(), 
+        description: '测试 `markdown` \n [abc](/abc)',
+        assignee_id: 142, milestone_id: 117, labels: 'test,gitlabapi'
       }, function (err, row) {
         should.not.exists(err);
         row.project_id.should.equal(223);
         client.issues.update({
-          id: 223, issue_id: row.id, 
+          id: 223,
+          issue_id: row.id, 
           closed: 1,
         }, function (err, row) {
           should.not.exists(err);
