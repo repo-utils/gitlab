@@ -35,10 +35,7 @@ describe('gitlab.test.js', function () {
     });
 
     it('should request 401 error when token wrong', function (done) {
-      var token = client.privateToken;
-      client.privateToken = 'wrongToken';
-      client.request('get', '/projects/:id/milestones', {id: 223}, function (err, milestones) {
-        client.privateToken = token;
+      client.request('get', '/projects/:id/milestones', {id: 223, private_token: 'wrong'}, function (err, milestones) {
         should.exists(err);
         err.name.should.equal('Gitlab401Error');
         err.message.should.equal('401 Unauthorized');

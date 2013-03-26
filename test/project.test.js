@@ -33,7 +33,7 @@ describe('project.test.js', function () {
   describe('client.projects.list()', function () {
 
     it('should return a projects', function (done) {
-      client.projects.list({id: 223, per_page: 5}, function (err, projects) {
+      client.projects.list({per_page: 5}, function (err, projects) {
         should.not.exists(err);
         projects.should.length(5);
         var project = projects[0];
