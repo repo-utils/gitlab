@@ -32,7 +32,7 @@ describe('project.test.js', function () {
 
   describe('client.projects.list()', function () {
 
-    it('should return a projects', function (done) {
+    it('should return projects', function (done) {
       client.projects.list({per_page: 5}, function (err, projects) {
         should.not.exists(err);
         projects.should.length(5);
@@ -45,6 +45,18 @@ describe('project.test.js', function () {
       });
     });
 
+  });
+
+  describe('client.projects.getByPath()', function () {
+    it('should return a project by path', function (done) {
+      client.projects.getByPath({path: 'edp/alimovie'}, function (err, project) {
+        should.not.exists(err);
+        project.should.have.keys('created_at', 'default_branch', 'description', 'id',
+          'issues_enabled', 'merge_requests_enabled', 'name', 'namespace_id',
+          'owner_id', 'path', 'private_flag', 'updated_at', 'wall_enabled', 'wiki_enabled');
+        done();
+      });
+    });
   });
 
 });
