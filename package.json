@@ -7,7 +7,8 @@
     "test": "make test"
   },
   "dependencies": {
-    "urllib": "0.3.4"
+    "urllib": "0.3.4",
+    "debug": "0.7.x"
   },
   "devDependencies": {
     "should": "*",

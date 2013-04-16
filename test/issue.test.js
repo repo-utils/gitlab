@@ -22,7 +22,7 @@ describe('issue.test.js', function () {
         should.not.exists(err);
         row.id.should.equal(1098);
         row.should.have.keys('id', 'project_id', 'title', 'description', 'labels', 
-          'milestone', 'assignee', 'author', 'closed', 
+          'milestone', 'assignee', 'author', 'state',
           'updated_at', 'created_at');
         done();
       });
@@ -38,7 +38,7 @@ describe('issue.test.js', function () {
         issues.length.should.above(0);
         var row = issues[0];
         row.should.have.keys('id', 'project_id', 'title', 'description', 'labels', 
-          'milestone', 'assignee', 'author', 'closed', 
+          'milestone', 'assignee', 'author', 'state', 
           'updated_at', 'created_at');
         done();
       });
@@ -49,33 +49,49 @@ describe('issue.test.js', function () {
   describe('client.issues.create(), update()', function () {
     it('should create, update a issue', function (done) {
       client.issues.create({
-        id: 223, title: 'test title ' + new Date(), 
+        id: 223, 
+        title: 'test title ' + new Date(), 
         description: '测试 `markdown` \n [abc](/abc)',
-        assignee_id: 142, milestone_id: 117, labels: 'test,gitlabapi'
+        assignee_id: 142, 
+        milestone_id: 117, 
+        labels: 'test,gitlabapi'
       }, function (err, row) {
         should.not.exists(err);
         row.project_id.should.equal(223);
+        row.state.should.equal('opened');
         client.issues.update({
           id: 223,
           issue_id: row.id, 
-          closed: 1,
+          title: row.title + ' update',
+          state_event: 'close',
         }, function (err, row) {
           should.not.exists(err);
-          row.closed.should.equal(true);
+          row.title.should.include(' update');
+          row.state.should.equal('closed');
           done();
         });
       });
     });
 
-    it('should update a closed issue', function (done) {
+    it('should update a close, reopen and close issue', function (done) {
       client.issues.update({
         id: 223,
-        issue_id: 1098,
-        closed: 1
+        issue_id: 1385,
+        description: 'need to be closed!',
+        state_event: 'close',
       }, function (err, row) {
         should.not.exists(err);
-        row.closed.should.equal(true);
-        done();
+        row.state.should.equal('closed');
+        client.issues.update({
+          id: 223,
+          issue_id: 1385,
+          description: 'need to be reopen!',
+          state_event: 'reopen',
+        }, function (err, row) {
+          should.not.exists(err);
+          row.state.should.equal('reopened');
+          done();
+        });
       });
     });
 
@@ -87,7 +103,7 @@ describe('issue.test.js', function () {
         should.not.exists(err);
         rows.length.should.above(0);
         var row = rows[0];
-        row.should.have.keys('id', 'body', 'author', 'created_at');
+        row.should.have.keys('id', 'body', 'author', 'created_at', 'attachment');
         done();
       });
     });

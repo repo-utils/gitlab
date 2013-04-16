@@ -20,7 +20,7 @@ describe('member.test.js', function () {
     it('should return a member', function (done) {
       client.members.get({id: 223, user_id: 142}, function (err, member) {
         should.not.exists(err);
-        member.should.have.keys('id', 'username', 'email', 'name', 'blocked', 'created_at', 'access_level');
+        member.should.have.keys('id', 'username', 'email', 'name', 'state', 'created_at', 'access_level');
         done();
       });
     });
@@ -34,7 +34,7 @@ describe('member.test.js', function () {
         should.not.exists(err);
         members.should.length(5);
         var member = members[0];
-        member.should.have.keys('id', 'username', 'email', 'name', 'blocked', 'created_at', 'access_level');
+        member.should.have.keys('id', 'username', 'email', 'name', 'state', 'created_at', 'access_level');
         done();
       });
     });

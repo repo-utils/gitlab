@@ -18,12 +18,14 @@ describe('project.test.js', function () {
   describe('client.projects.get()', function () {
 
     it('should return a project', function (done) {
-      client.projects.get({id: 223}, function (err, project) {
+      client.projects.get({id: 441}, function (err, project) {
         should.not.exists(err);
         project.should.have.keys('id', 'name', 'description', 'default_branch',
-          'owner', 'private', 'issues_enabled', 'merge_requests_enabled', 'wall_enabled',
+          'owner', 
+          'public', 'path', 'path_with_namespace', 'namespace',
+          'issues_enabled', 'merge_requests_enabled', 'wall_enabled',
           'wiki_enabled', 'created_at');
-        project.owner.should.have.keys('id', 'username', 'email', 'name', 'blocked', 'created_at');
+        project.owner.should.have.keys('id', 'username', 'email', 'name', 'state', 'created_at');
         done();
       });
     });
@@ -38,9 +40,11 @@ describe('project.test.js', function () {
         projects.should.length(5);
         var project = projects[0];
         project.should.have.keys('id', 'name', 'description', 'default_branch',
-          'owner', 'private', 'issues_enabled', 'merge_requests_enabled', 'wall_enabled',
+          'owner', 
+          'public', 'path', 'path_with_namespace', 'namespace',
+          'issues_enabled', 'merge_requests_enabled', 'wall_enabled',
           'wiki_enabled', 'created_at');
-        project.owner.should.have.keys('id', 'username', 'email', 'name', 'blocked', 'created_at');
+        project.owner.should.have.keys('id', 'username', 'email', 'name', 'state', 'created_at');
         done();
       });
     });
@@ -53,7 +57,9 @@ describe('project.test.js', function () {
         should.not.exists(err);
         project.should.have.keys('created_at', 'default_branch', 'description', 'id',
           'issues_enabled', 'merge_requests_enabled', 'name', 'namespace_id',
-          'owner_id', 'path', 'private_flag', 'updated_at', 'wall_enabled', 'wiki_enabled');
+          'creator_id', 'snippets_enabled', 'public',
+          'issues_tracker_id', 'issues_tracker',
+          'path', 'private_flag', 'updated_at', 'wall_enabled', 'wiki_enabled');
         done();
       });
     });

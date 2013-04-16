@@ -22,7 +22,7 @@ describe('milestone.test.js', function () {
         should.not.exists(err);
         milestone.should.have.property('id');
         milestone.should.have.keys('id', 'project_id', 'title', 'description',
-          'due_date', 'closed', 'updated_at', 'created_at');
+          'due_date', 'state', 'updated_at', 'created_at');
         done();
       });
     });
@@ -36,7 +36,7 @@ describe('milestone.test.js', function () {
         should.not.exists(err);
         milestones.should.length(5);
         milestones[0].should.have.keys('id', 'project_id', 'title', 'description',
-          'due_date', 'closed', 'updated_at', 'created_at');
+          'due_date', 'state', 'updated_at', 'created_at');
         done();
       });
     });
@@ -55,7 +55,7 @@ describe('milestone.test.js', function () {
         should.not.exists(err);
         milestone.should.have.property('id');
         milestone.should.have.property('project_id', 223);
-        milestone.closed.should.equal(false);
+        milestone.state.should.equal('active');
         milestone.due_date.should.equal('2013-02-14');
         client.milestones.update({
           id: 223, 
@@ -63,13 +63,13 @@ describe('milestone.test.js', function () {
           title: milestone.title + ' || test update milestone' + new Date(),
           description: milestone.description + ' || \n ## description for update milestone' + new Date(),
           due_date: '2013-02-15',
-          closed: '1',
-          state: 'closed',
+          // closed: '1',
+          state_event: 'close',
         }, function (err, milestone) {
           should.not.exists(err);
           milestone.should.have.keys('id', 'project_id', 'title', 'description',
-            'due_date', 'closed', 'updated_at', 'created_at');
-          milestone.closed.should.equal(true);
+            'due_date', 'state', 'updated_at', 'created_at');
+          milestone.state.should.equal('closed');
           milestone.due_date.should.equal('2013-02-15');
           done();
         });
