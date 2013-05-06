@@ -1,4 +1,10 @@
 
+0.0.5 / 2013-05-06 
+==================
+
+  * move requestData to data when error
+  * fixed test case for gitlab@0.5; add debug;
+
 0.0.4 / 2013-03-27 
 ==================
 
