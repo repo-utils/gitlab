@@ -49,7 +49,7 @@ describe('gitlab.test.js', function () {
       function (err, milestones) {
         should.exists(err);
         err.name.should.equal('Gitlab405Error');
-        err.message.should.equal('405 Method Not Allowed');
+        err.message.should.equal('Unknow Error 405');
         should.not.exists(milestones);
         done();
       });

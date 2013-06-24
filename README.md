@@ -1,4 +1,6 @@
-gitlab [![Build Status](https://secure.travis-ci.org/fengmk2/gitlab.png)](http://travis-ci.org/fengmk2/gitlab) [![Dependencies](http://david-dm.org/fengmk2/gitlab.png)](http://david-dm.org/fengmk2/gitlab)
+gitlab [![Build Status](https://secure.travis-ci.org/fengmk2/gitlab.png)](http://travis-ci.org/fengmk2/gitlab) 
+[![Dependencies](http://david-dm.org/fengmk2/gitlab.png)](http://david-dm.org/fengmk2/gitlab) 
+[![Coverage Status](https://coveralls.io/repos/fengmk2/gitlab/badge.png)](https://coveralls.io/r/fengmk2/gitlab)
 =======
 
 ![logo](https://raw.github.com/fengmk2/gitlab/master/logo.png)
@@ -6,7 +8,6 @@ gitlab [![Build Status](https://secure.travis-ci.org/fengmk2/gitlab.png)](http:/
 Gitlab API nodejs client.
 
 * [Gitlab API document](https://github.com/gitlabhq/gitlabhq/tree/master/doc/api)
-* jscoverage: [98%](http://fengmk2.github.com/coverage/gitlab.html)
 
 ## Install
 
