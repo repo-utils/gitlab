@@ -1,5 +1,4 @@
 gitlab [![Build Status](https://secure.travis-ci.org/fengmk2/gitlab.png)](http://travis-ci.org/fengmk2/gitlab) 
-[![Dependencies](http://david-dm.org/fengmk2/gitlab.png)](http://david-dm.org/fengmk2/gitlab) 
 [![Coverage Status](https://coveralls.io/repos/fengmk2/gitlab/badge.png)](https://coveralls.io/r/fengmk2/gitlab)
 =======
 
