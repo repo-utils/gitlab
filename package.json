@@ -14,6 +14,7 @@
   },
   "devDependencies": {
     "should": "*",
+    "pedding": "*",
     "blanket": "*",
     "travis-cov": "*",
     "coveralls": "*",
