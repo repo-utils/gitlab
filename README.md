@@ -83,6 +83,21 @@ Milestone.prototype.create = function (params, callback);
 Milestone.prototype.update = function (params, callback);
 ```
 
+## Authors
+
+```bash
+$ git summary 
+
+ project  : gitlab
+ repo age : 4 months
+ active   : 8 days
+ commits  : 17
+ files    : 25
+ authors  : 
+    15  fengmk2                 88.2%
+     2  Ondrej                  11.8%
+```
+
 ## License 
 
 (The MIT License)

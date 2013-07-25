@@ -1,4 +1,11 @@
 
+0.0.6 / 2013-07-25 
+==================
+
+  * added user(s) ressource (@Ondrej)
+  * Create user.js
+  * fixed test cases
+
 0.0.5 / 2013-05-06 
 ==================
 

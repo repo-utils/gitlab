@@ -1,6 +1,6 @@
 {
   "name": "node-gitlab",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "gitlab",
   "main": "index.js",
   "scripts": {
