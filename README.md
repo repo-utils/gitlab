@@ -179,12 +179,12 @@ $ git summary
 
  project  : gitlab
  repo age : 4 months
- active   : 8 days
- commits  : 17
- files    : 25
+ active   : 10 days
+ commits  : 19
+ files    : 27
  authors  : 
-    15  fengmk2                 88.2%
-     2  Ondrej                  11.8%
+    17  fengmk2                 89.5%
+     2  Ondrej                  10.5%
 ```
 
 ## License 

@@ -27,4 +27,4 @@ test-coveralls:
 
 test-all: test test-cov
 
-.PHONY: install test test-cov test-all test-coveralls
+.PHONY: test
