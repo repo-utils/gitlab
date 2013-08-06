@@ -1,1 +1,1 @@
-module.exports = process.env.GITLAB_COV ? require('./lib-cov/gitlab') : require('./lib/gitlab');
+module.exports = require('./lib/gitlab');

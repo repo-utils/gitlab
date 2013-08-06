@@ -48,8 +48,8 @@ describe('gitlab.test.js', function () {
       client.request('post', '/projects/:id/milestones/:milestone_id', {id: 223, milestone_id: 76, title: '123'}, 
       function (err, milestones) {
         should.exists(err);
-        err.name.should.equal('Gitlab405Error');
-        err.message.should.equal('Unknow Error 405');
+        err.name.should.equal('GitlabReponseFormatError');
+        err.message.should.equal('Parse json error: Unexpected end of input');
         should.not.exists(milestones);
         done();
       });

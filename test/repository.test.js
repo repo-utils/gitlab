@@ -14,7 +14,7 @@ var should = require('should');
 var pedding = require('pedding');
 var client = require('./client');
 
-describe.only('repository.test.js', function () {
+describe('repository.test.js', function () {
 
   describe('client.repository.list()', function () {
 

@@ -6,11 +6,11 @@
   "scripts": {
     "test": "make test-all",
     "blanket": { "pattern": "gitlab/lib" },
-    "travis-cov": { "threshold": 98 }
+    "travis-cov": { "threshold": 100 }
   },
   "dependencies": {
-    "urllib": ">=0.3.4",
-    "debug": "0.7.x"
+    "restful-client": ">=0.0.2",
+    "debug": ">=0.7.2"
   },
   "devDependencies": {
     "should": "*",
