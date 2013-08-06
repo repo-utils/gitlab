@@ -177,13 +177,13 @@ Repository.prototype.getBlob = function (params, callback);
 $ git summary 
 
  project  : gitlab
- repo age : 4 months
- active   : 10 days
- commits  : 19
- files    : 27
+ repo age : 5 months
+ active   : 11 days
+ commits  : 22
+ files    : 26
  authors  : 
-    17  fengmk2                 89.5%
-     2  Ondrej                  10.5%
+    20  fengmk2                 90.9%
+     2  Ondrej                  9.1%
 ```
 
 ## License 
