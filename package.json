@@ -9,7 +9,7 @@
     "travis-cov": { "threshold": 100 }
   },
   "dependencies": {
-    "restful-client": ">=0.0.2",
+    "restful-client": ">=0.0.4",
     "debug": ">=0.7.2"
   },
   "devDependencies": {

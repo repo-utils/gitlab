@@ -213,6 +213,7 @@ describe('repository.test.js', function () {
       client.repository.getBlob({ id: 441, sha: 'master', filepath: 'lib/alidata.js' }, function (err, blob) {
         should.not.exists(err);
         should.exists(blob);
+        should.ok(Buffer.isBuffer(blob));
         blob.should.be.instanceof(Buffer);
         blob.length.should.above(0);
         blob.toString().should.include('alidata - lib/alidata.js');
