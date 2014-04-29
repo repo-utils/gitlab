@@ -21,9 +21,10 @@
     "mocha-lcov-reporter": "*",
     "mocha": "*"
   },
+  "homepage": "https://github.com/repo-utils/gitlab",
   "repository": {
     "type": "git",
-    "url": "git://github.com/fengmk2/gitlab.git"
+    "url": "git://github.com/repo-utils/gitlab.git"
   },
   "keywords": [
     "gitlab", "gitlab api", "git"
