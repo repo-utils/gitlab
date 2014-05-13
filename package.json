@@ -1,6 +1,6 @@
 {
   "name": "node-gitlab",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Gitlab API nodejs client.",
   "main": "index.js",
   "scripts": {
@@ -9,17 +9,19 @@
     "travis-cov": { "threshold": 100 }
   },
   "dependencies": {
-    "restful-client": ">=0.0.4",
-    "debug": ">=0.7.2"
+    "debug": "~0.8.1",
+    "restful-client": "~0.0.4"
   },
   "devDependencies": {
-    "should": "*",
-    "pedding": "*",
+    "autod": "*",
     "blanket": "*",
-    "travis-cov": "*",
+    "contributors": "*",
     "coveralls": "*",
+    "mocha": "*",
     "mocha-lcov-reporter": "*",
-    "mocha": "*"
+    "pedding": "~0.0.3",
+    "should": "~3.3.1",
+    "travis-cov": "*"
   },
   "homepage": "https://github.com/repo-utils/gitlab",
   "repository": {

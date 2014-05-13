@@ -1,6 +1,8 @@
-gitlab [![Build Status](https://secure.travis-ci.org/repo-utils/gitlab.png)](http://travis-ci.org/repo-utils/gitlab)
-[![Coverage Status](https://coveralls.io/repos/repo-utils/gitlab/badge.png)](https://coveralls.io/r/repo-utils/gitlab)
+gitlab
 =======
+
+[![Build Status](https://secure.travis-ci.org/repo-utils/gitlab.png)](http://travis-ci.org/repo-utils/gitlab)
+[![Coverage Status](https://coveralls.io/repos/repo-utils/gitlab/badge.png)](https://coveralls.io/r/repo-utils/gitlab)
 
 ![logo](https://raw.github.com/repo-utils/gitlab/master/logo.png)
 
@@ -190,7 +192,7 @@ $ git summary
 
 (The MIT License)
 
-Copyright (c) 2013 fengmk2 &lt;fengmk2@gmail.com&gt;
+Copyright (c) 2013 - 2014 fengmk2 &lt;fengmk2@gmail.com&gt;
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
