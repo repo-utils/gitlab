@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "debug": "~0.8.1",
-    "restful-client": "~0.0.4"
+    "restful-client": "~0.1.0"
   },
   "devDependencies": {
     "autod": "*",
@@ -20,7 +20,7 @@
     "mocha": "*",
     "mocha-lcov-reporter": "*",
     "pedding": "~0.0.3",
-    "should": "~3.3.1",
+    "should": "~3.3.2",
     "travis-cov": "*"
   },
   "homepage": "https://github.com/repo-utils/gitlab",

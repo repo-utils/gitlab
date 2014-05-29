@@ -21,7 +21,7 @@ describe('issue.test.js', function () {
       client.issues.get({id: 223, issue_id: 1098}, function (err, row) {
         should.not.exists(err);
         row.id.should.equal(1098);
-        row.should.have.keys('id', 'project_id', 'title', 'description', 'labels', 
+        row.should.have.keys('id', 'project_id', 'title', 'description', 'labels',
           'milestone', 'assignee', 'author', 'state',
           'updated_at', 'created_at');
         done();
@@ -37,8 +37,8 @@ describe('issue.test.js', function () {
         should.not.exists(err);
         issues.length.should.above(0);
         var row = issues[0];
-        row.should.have.keys('id', 'project_id', 'title', 'description', 'labels', 
-          'milestone', 'assignee', 'author', 'state', 
+        row.should.have.keys('id', 'project_id', 'title', 'description', 'labels',
+          'milestone', 'assignee', 'author', 'state',
           'updated_at', 'created_at');
         done();
       });
@@ -49,11 +49,11 @@ describe('issue.test.js', function () {
   describe('client.issues.create(), update()', function () {
     it('should create, update a issue', function (done) {
       client.issues.create({
-        id: 223, 
-        title: 'test title ' + new Date(), 
+        id: 223,
+        title: 'test title ' + new Date(),
         description: '测试 `markdown` \n [abc](/abc)',
-        assignee_id: 142, 
-        milestone_id: 117, 
+        assignee_id: 142,
+        milestone_id: 117,
         labels: 'test,gitlabapi'
       }, function (err, row) {
         should.not.exists(err);
@@ -61,7 +61,7 @@ describe('issue.test.js', function () {
         row.state.should.equal('opened');
         client.issues.update({
           id: 223,
-          issue_id: row.id, 
+          issue_id: row.id,
           title: row.title + ' update',
           state_event: 'close',
         }, function (err, row) {

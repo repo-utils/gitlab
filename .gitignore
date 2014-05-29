@@ -1,6 +1,5 @@
 lib-cov
 coverage.html
-test/config.js
 *.seed
 *.log
 *.csv

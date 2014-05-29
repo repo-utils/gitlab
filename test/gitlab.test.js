@@ -17,9 +17,9 @@ describe('gitlab.test.js', function () {
 
   describe('Client.request()', function () {
     it('should request success', function (done) {
-      client.request('get', '/projects/:id/milestones', {id: 223}, function (err, milestones) {
+      client.request('get', '/projects', {}, function (err, projects) {
         should.not.exists(err);
-        milestones.length.should.above(0);
+        projects.length.should.above(0);
         done();
       });
     });
@@ -45,7 +45,7 @@ describe('gitlab.test.js', function () {
     });
 
     it('should request 405 error when method wrong', function (done) {
-      client.request('post', '/projects/:id/milestones/:milestone_id', {id: 223, milestone_id: 76, title: '123'}, 
+      client.request('post', '/projects/:id/milestones/:milestone_id', {id: 223, milestone_id: 76, title: '123'},
       function (err, milestones) {
         should.exists(err);
         err.name.should.equal('Gitlab405Error');
