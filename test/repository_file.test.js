@@ -197,4 +197,14 @@ describe('repository_file.test.js', function () {
       });
     });
   });
+
+  describe('client.repositoryFiles.getContents()', function () {
+    it('should return repository file contents', function (done) {
+      client.repositoryFiles.getContents({id: 55045, sha: '946579807281bd26b75b91986c78f15ad0bd40f7'}, function (err, contents) {
+        should.not.exists(err);
+        contents.should.be.a.String;
+        done();
+      });
+    });
+  });
 });
