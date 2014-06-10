@@ -1,4 +1,10 @@
 
+0.2.1 / 2014-06-10
+==================
+
+ * add getRawBlob() on repository
+ * add: Get the raw file contents for a blob by blob sha
+
 0.2.0 / 2014-05-29
 ==================
 
