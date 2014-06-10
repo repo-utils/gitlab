@@ -116,7 +116,7 @@ describe('repository.test.js', function () {
         branch.should.have.keys('name', 'commit', 'protected');
         branch.name.should.equal('master');
         branch.protected.should.equal(true);
-        
+
         client.repository.protectBranch({ id: 441, branch: 'master' }, function (err, branch) {
           should.not.exists(err);
           should.exists(branch);
@@ -135,7 +135,7 @@ describe('repository.test.js', function () {
         branch.should.have.keys('name', 'commit', 'protected');
         branch.name.should.equal('master');
         branch.protected.should.equal(false);
-        
+
         client.repository.unprotectBranch({ id: 441, branch: 'master' }, function (err, branch) {
           should.not.exists(err);
           should.exists(branch);
@@ -217,6 +217,20 @@ describe('repository.test.js', function () {
         blob.should.be.instanceof(Buffer);
         blob.length.should.above(0);
         blob.toString().should.include('alidata - lib/alidata.js');
+        done();
+      });
+    });
+  });
+
+  describe('client.repository.getRawBlob()', function () {
+    it('should return raw file content', function (done) {
+      client.repository.getRawBlob({id: 55045, sha: '946579807281bd26b75b91986c78f15ad0bd40f7'}, function (err, raw) {
+        should.not.exists(err);
+        should.exists(raw);
+        should.ok(Buffer.isBuffer(raw));
+        raw.should.be.a.Buffer;
+        raw.length.should.above(0);
+        raw.toString().should.include('gitlab-client-unittest\n=======\n\n');
         done();
       });
     });
