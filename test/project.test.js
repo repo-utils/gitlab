@@ -14,20 +14,23 @@ var client = require('./client');
 var should = require('should');
 
 describe('project.test.js', function () {
+  before(client.createProject);
+  after(client.removeProject);
 
   describe('client.projects.get()', function () {
 
     it('should return a project', function (done) {
-      client.projects.get({id: 441}, function (err, project) {
+      client.projects.get({id: client.id}, function (err, project) {
         should.not.exists(err);
         project.should.have.keys('id', 'name', 'description', 'default_branch',
-          'owner', 
+          'owner',
           'ssh_url_to_repo', 'http_url_to_repo',
           'web_url',
           'public', 'path', 'path_with_namespace', 'name_with_namespace', 'namespace',
-          'issues_enabled', 'merge_requests_enabled', 'wall_enabled',
-          'wiki_enabled', 'created_at', 'last_activity_at');
-        project.owner.should.have.keys('id', 'username', 'email', 'name', 'state', 'created_at');
+          'issues_enabled', 'merge_requests_enabled',
+          'wiki_enabled', 'created_at', 'last_activity_at',
+          'archived', 'visibility_level', 'snippets_enabled', 'permissions');
+        project.owner.should.have.keys('id', 'username', 'name', 'state', 'avatar_url');
         done();
       });
     });
@@ -37,25 +40,25 @@ describe('project.test.js', function () {
   describe('client.projects.list()', function () {
 
     it('should return projects', function (done) {
-      client.projects.list({per_page: 5}, function (err, projects) {
+      client.projects.list({per_page: 1}, function (err, projects) {
         should.not.exists(err);
-        projects.should.length(5);
+        projects.should.length(1);
         var project = projects[0];
         // project.should.have.keys('id', 'name', 'description', 'default_branch',
-        //   'owner', 
+        //   'owner',
         //   'public', 'path', 'path_with_namespace', 'namespace',
         //   'issues_enabled', 'merge_requests_enabled', 'wall_enabled',
         //   'wiki_enabled', 'created_at');
-        project.owner.should.have.keys('id', 'username', 'email', 'name', 'state', 'created_at');
+        project.owner.should.have.keys('id', 'username', 'name', 'state', 'avatar_url');
         done();
       });
     });
 
   });
 
-  describe('client.projects.getByPath()', function () {
+  describe.skip('client.projects.getByPath()', function () {
     it('should return a project by path', function (done) {
-      client.projects.getByPath({path: 'edp/alimovie'}, function (err, project) {
+      client.projects.getByPath({path: 'fengmk2/node-gitlab-test'}, function (err, project) {
         should.not.exists(err);
         project.id.should.equal(1040);
         // project.should.have.keys('created_at', 'default_branch', 'description', 'id',

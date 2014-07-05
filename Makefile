@@ -4,12 +4,13 @@ TIMEOUT = 16000
 MOCHA_OPTS =
 
 install:
-	@npm install
+	@npm install --registry=https://registry.npm.taobao.org
 
 test: install
 	@NODE_ENV=test ./node_modules/.bin/mocha \
 		--reporter $(REPORTER) \
 		--timeout $(TIMEOUT) \
+		--bail \
 		$(MOCHA_OPTS) \
 		$(TESTS)
 
@@ -26,7 +27,7 @@ test-coveralls: test
 test-all: test test-cov
 
 autod: install
-	@./node_modules/.bin/autod -w --prefix "~"
+	@./node_modules/.bin/autod -w --prefix "~" -k should
 	@$(MAKE) install
 
 contributors: install
