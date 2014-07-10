@@ -25,7 +25,7 @@ var client = gitlab.create({
   api: 'https://gitlab.com/api/v3',
   privateToken: 'your private token'
 });
-client.milestone.list({id: 1}, function (err, milestones) {
+client.milestones.list({id: 1}, function (err, milestones) {
   console.log(milestones);
 });
 ```
