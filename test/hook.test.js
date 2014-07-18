@@ -17,7 +17,7 @@ var hookId;
 describe('hook.test.js', function () {
   before(function (done) {
     client.createProject(function (err) {
-      client.hooks.create({id: client.id, url: 'http://gitlab.alibaba-inc.com/help/api'}, function (err, data) {
+      client.hooks.create({id: client.id, url: 'http://gitlab.com/help/api'}, function (err, data) {
         if (err) {
           return done(err);
         }
@@ -55,12 +55,12 @@ describe('hook.test.js', function () {
 
   describe('client.hooks.create(), update(), remove()', function () {
     it('should create, update, remove a hook', function (done) {
-      client.hooks.create({id: client.id, url: 'http://gitlab.alibaba-inc.com/help/api'}, function (err, hook) {
+      client.hooks.create({id: client.id, url: 'http://gitlab.com/help/api'}, function (err, hook) {
         should.not.exists(err);
-        hook.url.should.equal('http://gitlab.alibaba-inc.com/help/api');
+        hook.url.should.equal('http://gitlab.com/help/api');
         client.hooks.update({id: client.id, hook_id: hook.id, url: hook.url + '/update'}, function (err, hook) {
           should.not.exists(err);
-          hook.url.should.equal('http://gitlab.alibaba-inc.com/help/api/update');
+          hook.url.should.equal('http://gitlab.com/help/api/update');
           done();
           // client.hooks.remove({id: 223, hook_id: hook.id}, function (err, hook) {
           //   should.not.exists(err);
