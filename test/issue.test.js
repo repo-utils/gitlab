@@ -82,7 +82,7 @@ describe('issue.test.js', function () {
           state_event: 'close',
         }, function (err, row) {
           should.not.exists(err);
-          row.title.should.include(' update');
+          row.title.should.containEql(' update');
           row.state.should.equal('closed');
           done();
         });

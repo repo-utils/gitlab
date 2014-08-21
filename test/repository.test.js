@@ -216,7 +216,7 @@ describe.skip('repository.test.js', function () {
         should.ok(Buffer.isBuffer(blob));
         blob.should.be.instanceof(Buffer);
         blob.length.should.above(0);
-        blob.toString().should.include('alidata - lib/alidata.js');
+        blob.toString().should.containEql('alidata - lib/alidata.js');
         done();
       });
     });
@@ -230,7 +230,7 @@ describe.skip('repository.test.js', function () {
         should.ok(Buffer.isBuffer(raw));
         raw.should.be.a.Buffer;
         raw.length.should.above(0);
-        raw.toString().should.include('gitlab-client-unittest\n=======\n\n');
+        raw.toString().should.containEql('gitlab-client-unittest\n=======\n\n');
         done();
       });
     });

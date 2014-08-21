@@ -1,8 +1,28 @@
 gitlab
 =======
 
-[![Build Status](https://secure.travis-ci.org/repo-utils/gitlab.png)](http://travis-ci.org/repo-utils/gitlab)
-[![Coverage Status](https://coveralls.io/repos/repo-utils/gitlab/badge.png)](https://coveralls.io/r/repo-utils/gitlab)
+[![NPM version][npm-image]][npm-url]
+[![build status][travis-image]][travis-url]
+[![Test coverage][coveralls-image]][coveralls-url]
+[![Gittip][gittip-image]][gittip-url]
+[![David deps][david-image]][david-url]
+[![node version][node-image]][node-url]
+[![npm download][download-image]][download-url]
+
+[npm-image]: https://img.shields.io/npm/v/node-gitlab.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/node-gitlab
+[travis-image]: https://img.shields.io/travis/repo-utils/gitlab.svg?style=flat-square
+[travis-url]: https://travis-ci.org/repo-utils/gitlab
+[coveralls-image]: https://img.shields.io/coveralls/repo-utils/gitlab.svg?style=flat-square
+[coveralls-url]: https://coveralls.io/r/repo-utils/gitlab?branch=master
+[gittip-image]: https://img.shields.io/gittip/fengmk2.svg?style=flat-square
+[gittip-url]: https://www.gittip.com/fengmk2/
+[david-image]: https://img.shields.io/david/repo-utils/gitlab.svg?style=flat-square
+[david-url]: https://david-dm.org/repo-utils/gitlab
+[node-image]: https://img.shields.io/badge/node.js-%3E=_0.10-green.svg?style=flat-square
+[node-url]: http://nodejs.org/download/
+[download-image]: https://img.shields.io/npm/dm/node-gitlab.svg?style=flat-square
+[download-url]: https://npmjs.org/package/node-gitlab
 
 ![logo](https://raw.github.com/repo-utils/gitlab/master/logo.png)
 
@@ -13,7 +33,7 @@ Gitlab API nodejs client.
 ## Install
 
 ```bash
-$ npm install node-gitlab
+$ npm install node-gitlab --save
 ```
 
 ## Usage
