@@ -1,3 +1,19 @@
+/**!
+ * gitlab - test/client.js
+ *
+ * Copyright(c) fengmk2 and other contributors.
+ * MIT Licensed
+ *
+ * Authors:
+ *   fengmk2 <fengmk2@gmail.com> (http://fengmk2.github.com)
+ */
+
+'use strict';
+
+/**
+ * Module dependencies.
+ */
+
 var gitlab = require('../');
 
 var client = gitlab.create(require('./config'));
@@ -45,10 +61,6 @@ client.removeProject = function (callback) {
   client.projects.remove({
     id: client.id
   }, callback);
-}
+};
 
 module.exports = client;
-
-// client.request('get', '/users', {}, function () {
-//   console.log(arguments);
-// })
