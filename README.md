@@ -24,9 +24,7 @@ gitlab
 [download-image]: https://img.shields.io/npm/dm/node-gitlab.svg?style=flat-square
 [download-url]: https://npmjs.org/package/node-gitlab
 
-![logo](https://raw.github.com/repo-utils/gitlab/master/logo.png)
-
-Gitlab API nodejs client.
+Gitlab API Node.js client
 
 * [Gitlab API document](https://github.com/gitlabhq/gitlabhq/tree/master/doc/api)
 
@@ -45,9 +43,49 @@ var client = gitlab.create({
   api: 'https://gitlab.com/api/v3',
   privateToken: 'your private token'
 });
+
 client.milestones.list({id: 1}, function (err, milestones) {
-  console.log(milestones);
+  console.log(err, milestones);
 });
+```
+
+### Thunk way
+
+Require [co](https://github.com/visionmedia/co) and node >= `0.11.12`:
+
+```js
+var co = require('co');
+var gitlab = require('node-gitlab');
+
+var client = gitlab.createThunk({
+  api: 'https://gitlab.com/api/v3',
+  privateToken: 'your private token'
+});
+
+co(function* () {
+  var milestones = yield client.milestones.list({id: 1});
+})();
+```
+
+### Promise way
+
+Require node >= `0.11.13` or [bluebird](https://github.com/petkaantonov/bluebird):
+
+```js
+var gitlab = require('node-gitlab');
+
+var client = gitlab.createPromise({
+  api: 'https://gitlab.com/api/v3',
+  privateToken: 'your private token'
+});
+
+client.milestones.list({id: 1})
+  .then(function (milestones) {
+    console.log(milestones);
+  })
+  .catch(function (err) {
+    throw err;
+  });
 ```
 
 ## Document
@@ -259,7 +297,7 @@ Parameters:
 
 (The MIT License)
 
-Copyright (c) 2013 - 2014 fengmk2 &lt;fengmk2@gmail.com&gt;
+Copyright (c) 2013 - 2014 fengmk2 <fengmk2@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

@@ -1,20 +1,23 @@
-/*!
+/**!
  * gitlab - test/gitlab.test.js
- * Copyright(c) 2012 fengmk2 <fengmk2@gmail.com>
+ *
+ * Copyright(c) fengmk2 and other contributors.
  * MIT Licensed
+ *
+ * Authors:
+ *   fengmk2 <fengmk2@gmail.com> (http://fengmk2.github.com)
  */
 
-"use strict";
+'use strict';
 
 /**
  * Module dependencies.
  */
 
-var client = require('./client');
 var should = require('should');
+var client = require('./client');
 
 describe('gitlab.test.js', function () {
-
   describe('Client.request()', function () {
     it('should request success', function (done) {
       client.request('get', '/projects', {}, function (err, projects) {
@@ -22,6 +25,20 @@ describe('gitlab.test.js', function () {
         projects.length.should.above(0);
         done();
       });
+    });
+
+    it('should request with promise way success', function (done) {
+      client.promise.request('get', '/projects', {})
+        .then(function (projects) {
+          projects.length.should.above(0);
+          done();
+        })
+        .catch(done);
+    });
+
+    it('should request with thunk way success', function* () {
+      var projects = yield client.thunk.request('get', '/projects', {});
+      projects.length.should.above(0);
     });
 
     it('should request 404 error', function (done) {
@@ -54,7 +71,5 @@ describe('gitlab.test.js', function () {
         done();
       });
     });
-
   });
-
 });
