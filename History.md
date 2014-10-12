@@ -1,4 +1,11 @@
 
+1.0.0 / 2014-10-12
+==================
+
+ * support promise and thunk. fixed #6
+ * test travis use node 0.11
+ * mv all resources to lib/resources
+
 0.4.1 / 2014-09-18
 ==================
 
