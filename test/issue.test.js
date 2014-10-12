@@ -33,6 +33,7 @@ describe('issue.test.js', function () {
   });
 
   after(client.removeProject);
+
   describe('client.issues.get()', function () {
     it('should return a issue', function (done) {
       client.issues.get({id: client.id, issue_id: issueId}, function (err, row) {
@@ -43,6 +44,26 @@ describe('issue.test.js', function () {
           'updated_at', 'created_at');
         done();
       });
+    });
+
+    it('should return issue with promise way', function (done) {
+      client.promise.issues.get({id: client.id, issue_id: issueId})
+      .then(function (row) {
+        row.id.should.equal(issueId);
+        row.should.have.keys('id', 'iid', 'project_id', 'title', 'description', 'labels',
+          'milestone', 'assignee', 'author', 'state',
+          'updated_at', 'created_at');
+        done();
+      })
+      .catch(done);
+    });
+
+    it('should return issue with thunk way', function* () {
+      var row = yield client.thunk.issues.get({id: client.id, issue_id: issueId});
+      row.id.should.equal(issueId);
+      row.should.have.keys('id', 'iid', 'project_id', 'title', 'description', 'labels',
+        'milestone', 'assignee', 'author', 'state',
+        'updated_at', 'created_at');
     });
   });
 
@@ -110,7 +131,6 @@ describe('issue.test.js', function () {
         });
       });
     });
-
   });
 
   describe('client.issues.listNotes()', function () {
@@ -122,6 +142,13 @@ describe('issue.test.js', function () {
         row.should.have.keys('id', 'body', 'author', 'created_at', 'attachment');
         done();
       });
+    });
+
+    it('should return issue\'s notes in thunk way', function* () {
+      var rows = yield client.thunk.issues.listNotes({id: client.id, issue_id: issueId});
+      rows.length.should.above(0);
+      var row = rows[0];
+      row.should.have.keys('id', 'body', 'author', 'created_at', 'attachment');
     });
   });
 

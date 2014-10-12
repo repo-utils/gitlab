@@ -55,6 +55,12 @@ Require [co](https://github.com/visionmedia/co) and node >= `0.11.12`:
 
 ```js
 var co = require('co');
+var gitlab = require('node-gitlab');
+
+var client = gitlab.createThunk({
+  api: 'https://gitlab.com/api/v3',
+  privateToken: 'your private token'
+});
 
 co(function* () {
   var milestones = yield client.milestones.list({id: 1});
@@ -62,6 +68,8 @@ co(function* () {
 ```
 
 ### Promise way
+
+Require node >= `0.11.13` or [bluebird](https://github.com/petkaantonov/bluebird):
 
 ```js
 var gitlab = require('node-gitlab');

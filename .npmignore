@@ -6,3 +6,5 @@ Makefile
 logo.png
 .jshint*
 coverage/
+logo.png
+*.log

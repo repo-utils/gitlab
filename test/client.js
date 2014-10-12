@@ -15,8 +15,9 @@
  */
 
 var gitlab = require('../');
+var config = require('./config');
 
-var client = gitlab.create(require('./config'));
+var client = gitlab.create(config);
 
 client.createProject = function (callback) {
   client._list(function (err) {
@@ -62,5 +63,8 @@ client.removeProject = function (callback) {
     id: client.id
   }, callback);
 };
+
+client.promise = gitlab.createPromise(config);
+client.thunk = gitlab.createThunk(config);
 
 module.exports = client;
