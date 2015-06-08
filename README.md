@@ -92,148 +92,322 @@ client.milestones.list({id: 1})
 
 @see [Gitlab API document](https://github.com/gitlabhq/gitlabhq/tree/master/doc/api).
 
+### Issues
+
+https://github.com/gitlabhq/gitlabhq/blob/master/doc/api/issues.md
+
+#### client.issues.list({id})
+
+Get a list of project issues. This function accepts pagination parameters page and per_page to return the list of project issues.
+
+Parameters:
+
+- id (required) - The ID of a project
+- iid (optional) - Return the issue having the given `iid`
+- state (optional) - Return `all` issues or just those that are `opened` or `closed`
+- labels (optional) - Comma-separated list of label names
+- milestone (optional) - Milestone title
+- order_by (optional) - Return requests ordered by `created_at` or `updated_at` fields. Default is `created_at`
+- sort (optional) - Return requests sorted in `asc` or `desc` order. Default is `desc`
+
+#### client.issues.get({id, issue_id})
+
+Gets a single project issue.
+
+Parameters:
+
+- id (required) - The ID of a project
+- issue_id (required) - The ID of a project issue
+
+```json
+{
+  "id": 42,
+  "iid": 3,
+  "project_id": 8,
+  "title": "Add user settings",
+  "description": "",
+  "labels": [
+    "feature"
+  ],
+  "milestone": {
+    "id": 1,
+    "title": "v1.0",
+    "description": "",
+    "due_date": "2012-07-20",
+    "state": "closed",
+    "updated_at": "2012-07-04T13:42:48Z",
+    "created_at": "2012-07-04T13:42:48Z"
+  },
+  "assignee": {
+    "id": 2,
+    "username": "jack_smith",
+    "email": "jack@example.com",
+    "name": "Jack Smith",
+    "state": "active",
+    "created_at": "2012-05-23T08:01:01Z"
+  },
+  "author": {
+    "id": 1,
+    "username": "john_smith",
+    "email": "john@example.com",
+    "name": "John Smith",
+    "state": "active",
+    "created_at": "2012-05-23T08:00:58Z"
+  },
+  "state": "opened",
+  "updated_at": "2012-07-12T13:43:19Z",
+  "created_at": "2012-06-28T12:58:06Z"
+}
+```
+
+#### client.issues.create({id, title, description, assignee_id, milestone_id, labels})
+
+Creates a new project issue.
+
+Parameters:
+
+- id (required) - The ID of a project
+- title (required) - The title of an issue
+- description (optional) - The description of an issue
+- assignee_id (optional) - The ID of a user to assign issue
+- milestone_id (optional) - The ID of a milestone to assign issue
+- labels (optional) - Comma-separated label names for an issue
+
+If the operation is successful, 200 and the newly created issue is returned. If an error occurs, an error number and a message explaining the reason is returned.
+
+#### client.issues.update({id, issue_id, title, description, assignee_id, milestone_id, labels})
+
+Updates an existing project issue. This function is also used to mark an issue as closed.
+
+Parameters:
+
+- id (required) - The ID of a project
+- issue_id (required) - The ID of a project's issue
+- title (optional) - The title of an issue
+- description (optional) - The description of an issue
+- assignee_id (optional) - The ID of a user to assign issue
+- milestone_id (optional) - The ID of a milestone to assign issue
+- labels (optional) - Comma-separated label names for an issue
+- state_event (optional) - The state event of an issue ('close' to close issue and 'reopen' to reopen it)
+
+If the operation is successful, 200 and the updated issue is returned. If an error occurs, an error number and a message explaining the reason is returned.
+
+#### client.issues.listNotes({id, issue_id})
+
+Gets a list of all notes for a single issue.
+
+Parameters:
+
+- id (required) - The ID of a project
+- issue_id (required) - The ID of an issue
+
+```json
+[
+  {
+    "id": 302,
+    "body": "Status changed to closed",
+    "attachment": null,
+    "author": {
+      "id": 1,
+      "username": "pipin",
+      "email": "admin@example.com",
+      "name": "Pip",
+      "state": "active",
+      "created_at": "2013-09-30T13:46:01Z"
+    },
+    "created_at": "2013-10-02T09:22:45Z"
+  },
+  {
+    "id": 305,
+    "body": "Text of the comment\r\n",
+    "attachment": null,
+    "author": {
+      "id": 1,
+      "username": "pipin",
+      "email": "admin@example.com",
+      "name": "Pip",
+      "state": "active",
+      "created_at": "2013-09-30T13:46:01Z"
+    },
+    "created_at": "2013-10-02T09:56:03Z"
+  }
+]
+```
+
+#### client.issues.getNote({id, issue_id, note_id})
+
+Returns a single note for a specific project issue
+
+Parameters:
+
+- id (required) - The ID of a project
+- issue_id (required) - The ID of a project issue
+- note_id (required) - The ID of an issue note
+
+#### client.issues.createNote({id, issue_id})
+
+Creates a new note to a single project issue.
+
+Parameters:
+
+- id (required) - The ID of a project
+- issue_id (required) - The ID of an issue
+- body (required) - The content of a note
+
+#### client.issues.updateNote({id, issue_id, note_id})
+
+Modify existing note of an issue.
+
+Parameters:
+
+- id (required) - The ID of a project
+- issue_id (required) - The ID of an issue
+- note_id (required) - The ID of a note
+- body (required) - The content of a note
+
 ### Milestones
 
-```js
-/**
- * Get a project's milestone.
- *
- * @param {Object} params
- *  - {Number} id, project's id
- *  - {Number} milestone_id, milestone's id.
- * @param {Function(err, row)} callback
- */
-Milestone.prototype.get = function (params, callback);
+https://github.com/gitlabhq/gitlabhq/blob/master/doc/api/milestones.md
 
-/**
- * List a project's all milestones.
- *
- * @param {Object} params
- *  - {Number} id, project's id.
- *  - {Number} [page=1], page number, default is `1`.
- *  - {Number} [perPage=20], number of items to list per page, max is `100`.
- * @param {Function(err, rows)} callback
- */
-Milestone.prototype.list = function (params, callback);
+#### client.milestones.list({id})
 
-/**
- * Create a milestone.
- *
- * @param {Object} params
- *  - {Number} id The ID of a project
- *  - {String} title The title of an milestone
- *  - {String} [description] The description of the milestone
- *  - {String} [due_date] The due date of the milestone
- * @param {Function(err, row)} callback
- */
-Milestone.prototype.create = function (params, callback);
+Returns a list of project milestones.
 
-/**
- * Update a milestone.
-
- * @param {Object} params
- *  - {Number} id The ID of a project
- *  - {Number} milestone_id The ID of a project milestone
- *  - {String} title The title of an milestone
- *  - {String} [description] The description of the milestone
- *  - {String} [due_date] The due date of the milestone
- *  - {String} [closed] The status of the milestone
- * @param {Function(err, row)} callback
- */
-Milestone.prototype.update = function (params, callback);
+```json
+[
+  {
+    "id": 12,
+    "iid": 3,
+    "project_id": 16,
+    "title": "10.0",
+    "description": "Version",
+    "due_date": "2013-11-29",
+    "state": "active",
+    "updated_at": "2013-10-02T09:24:18Z",
+    "created_at": "2013-10-02T09:24:18Z"
+  }
+]
 ```
 
-### Repository
+Parameters:
 
-```js
-/**
- * Get a list of repository branches from a project, sorted by name alphabetically.
- *
- * @param {Object} params
- *  - {String} id The ID of a project
- * @param {Function} callback
- */
-Repository.prototype.getBranches = function (params, callback);
+- {String} id (required) - The ID of a project
+- {String} iid (optional) - Return the milestone having the given iid
 
-/**
- * Protects a single project repository branch.
- * This is an idempotent function, protecting an already protected repository branch
- * still returns a 200 Ok status code.
- *
- * @param {Object} params
- *  - {String} id The ID of a project
- *  - {String} branch The name of the branch
- * @param {Function} callback
- */
-Repository.prototype.protectBranch = function (params, callback);
+#### client.milestones.get({id, milestone_id})
 
-/**
- * Unprotects a single project repository branch.
- * This is an idempotent function, unprotecting an already unprotected repository branch
- * still returns a 200 Ok status code.
- *
- * @param {Object} params
- *  - {String} id The ID of a project
- *  - {String} branch The name of the branch
- * @param {Function} callback
- */
-Repository.prototype.unprotectBranch = function (params, callback);
+Gets a single project milestone.
 
-/**
- * Get a single project repository branch.
- *
- * @param {Object} params
- *  - {String} id The ID of a project
- *  - {String} branch The name of the branch
- * @param {Function} callback
- */
-Repository.prototype.getBranch = function (params, callback);
+Parameters:
 
-/**
- * Get a list of repository tags from a project, sorted by name in reverse alphabetical order.
- *
- * @param {Object} params
- *  - {String} id The ID of a project
- * @param {Function} callback
- */
-Repository.prototype.getTags = function (params, callback);
+- {String} id (required) - The ID of a project
+- {String} milestone_id (required) - The ID of a project milestone
 
-/**
- * Get a list of repository commits in a project.
- *
- * @param {Object} params
- *  - {String} id The ID of a project
- *  - {String} [ref_name] The name of a repository branch or tag or if not given the default branch
- * @param {Function} callback
- */
-Repository.prototype.getCommits = function (params, callback);
+#### client.milestones.create({id, title, description, due_date})
 
-/**
- * Get a list of repository files and directories in a project.
- *
- * @param {Object} params
- *  - {String} id The ID of a project
- *  - {String} [path] The path inside repository, default is '/'. Used to get contend of subdirectories. e.g.: `test`
- *  - {String} [ref_name] The name of a repository branch or tag or if not given the default branch
- * @param {Function} callback
- */
-Repository.prototype.getTree = function (params, callback);
+Creates a new project milestone.
 
-/**
- * Get the raw file contents for a file.
- *
- * @param {Object} params
- *  - {String} id The ID of a project
- *  - {String} sha The commit or branch name
- *  - {String} filepath The path the file
- * @param {Function} callback
- */
-Repository.prototype.getBlob = function (params, callback);
+Parameters:
+
+- {String} id (required) - The ID of a project
+- {String} title (required) - The title of an milestone
+- {String} description (optional) - The description of the milestone
+- {String} due_date (optional) - The due date of the milestone
+
+#### client.milestones.update({id, milestone_id, title, description, due_date})
+
+Updates an existing project milestone.
+
+Parameters:
+
+- {String} id (required) - The ID of a project
+- {String} milestone_id (required) - The ID of a project milestone
+- {String} title (optional) - The title of a milestone
+- {String} description (optional) - The description of a milestone
+- {String} due_date (optional) - The due date of the milestone
+- {String} state_event (optional) - The state event of the milestone (`close`|`activate`)
+
+#### client.milestones.listIssues({id, milestone_id})
+
+Gets all issues assigned to a single project milestone.
+
+Parameters:
+
+- {String} id (required) - The ID of a project
+- {String} milestone_id (required) - The ID of a project milestone
+
+### Hooks
+
+https://github.com/gitlabhq/gitlabhq/blob/master/doc/api/projects.md#hooks
+
+#### client.hooks.list({id})
+
+Get a list of project hooks.
+
+Parameters:
+
+- {String} id (required) - The ID or NAMESPACE/PROJECT_NAME of a project
+
+#### client.hooks.get({id, hook_id})
+
+Get a specific hook for a project.
+
+```json
+{
+  "id": 1,
+  "url": "http://example.com/hook",
+  "project_id": 3,
+  "push_events": "true",
+  "issues_events": "true",
+  "merge_requests_events": "true",
+  "created_at": "2012-10-12T17:04:47Z"
+}
 ```
+
+Parameters:
+
+* {String} id (required) - The ID or NAMESPACE/PROJECT_NAME of a project
+* {String} hook_id (required) - The ID of a project hook
+
+#### client.hooks.create({id, url, push_events, issues_events, merge_requests_events, tag_push_events})
+
+Adds a hook to a specified project.
+
+Parameters:
+
+* {String} id (required) - The ID or NAMESPACE/PROJECT_NAME of a project
+* {String} url (required) - The hook URL
+* {Boolean} push_events - Trigger hook on push events, default is `true`
+* {Boolean} issues_events - Trigger hook on issues events
+* {Boolean} merge_requests_events - Trigger hook on merge_requests events
+* {Boolean} tag_push_events - Trigger hook on push_tag events
+
+#### client.hooks.update({id, hook_id, url, push_events, issues_events, merge_requests_events, tag_push_events})
+
+Edits a hook for a specified project.
+
+Parameters:
+
+* {String} id (required) - The ID or NAMESPACE/PROJECT_NAME of a project
+* {String} hook_id (required) - The ID of a project hook
+* {String} url (required) - The hook URL
+* {Boolean} push_events - Trigger hook on push events, default is `true`
+* {Boolean} issues_events - Trigger hook on issues events
+* {Boolean} merge_requests_events - Trigger hook on merge_requests events
+* {Boolean} tag_push_events - Trigger hook on push_tag events
+
+#### client.hooks.remove({id, hook_id})
+
+Removes a hook from a project. This is an idempotent method and can be called multiple times. Either the hook is available or not.
+
+Parameters:
+
+* {String} id (required) - The ID or NAMESPACE/PROJECT_NAME of a project
+* {String} hook_id (required) - The ID of a project hook
 
 ### RepositoryFiles
 
-https://gitlab.com/help/api/repository_files
+https://github.com/gitlabhq/gitlabhq/blob/master/doc/api/repository_files.md
 
 #### client.repositoryFiles.get({id, file_path, ref})
 
@@ -297,6 +471,7 @@ Parameters:
 
 (The MIT License)
 
+Copyright (c) 2015 repo-utils
 Copyright (c) 2013 - 2014 fengmk2 <fengmk2@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining

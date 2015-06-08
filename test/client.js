@@ -5,7 +5,7 @@
  * MIT Licensed
  *
  * Authors:
- *   fengmk2 <fengmk2@gmail.com> (http://fengmk2.github.com)
+ *   fengmk2 <fengmk2@gmail.com> (http://fengmk2.com)
  */
 
 'use strict';
@@ -61,7 +61,9 @@ client._create = function(callback) {
 client.removeProject = function (callback) {
   client.projects.remove({
     id: client.id
-  }, callback);
+  }, function () {
+    callback();
+  });
 };
 
 client.promise = gitlab.createPromise(config);

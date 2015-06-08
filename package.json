@@ -13,19 +13,19 @@
     "contributors": "contributors -f plain -o AUTHORS"
   },
   "dependencies": {
-    "debug": "~2.0.0",
-    "native-or-bluebird": "~1.1.1",
+    "debug": "~2.2.0",
+    "native-or-bluebird": "~1.2.0",
     "restful-client": "~1.0.0",
-    "thunkify-wrap": "~1.0.2"
+    "thunkify-wrap": "~1.0.4"
   },
   "devDependencies": {
     "autod": "*",
+    "co-mocha": "*",
     "contributors": "*",
     "istanbul-harmony": "*",
     "mocha": "*",
-    "co-mocha": "*",
     "pedding": "~1.0.0",
-    "should": "~4.0.4"
+    "should": "~6.0.3"
   },
   "homepage": "https://github.com/repo-utils/gitlab",
   "repository": {
