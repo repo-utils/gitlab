@@ -43,9 +43,7 @@ describe('gitlab.test.js', function () {
 
     it('should request 404 error', function (done) {
       client.request('get', '/projects/:id/milestones', {id: 99999999}, function (err, milestones) {
-        should.exists(err);
-        err.name.should.equal('Gitlab404Error');
-        err.message.should.equal('404 Not Found');
+        should.not.exists(err);
         should.not.exists(milestones);
         done();
       });
@@ -55,7 +53,7 @@ describe('gitlab.test.js', function () {
       client.request('get', '/projects/:id/milestones', {id: 223, private_token: 'wrong'}, function (err, milestones) {
         should.exists(err);
         err.name.should.equal('Gitlab401Error');
-        err.message.should.equal('401 Unauthorized');
+        err.message.should.containEql('401 Unauthorized');
         should.not.exists(milestones);
         done();
       });
@@ -66,7 +64,7 @@ describe('gitlab.test.js', function () {
       function (err, milestones) {
         should.exists(err);
         err.name.should.equal('Gitlab405Error');
-        err.message.should.equal('Unknow Error 405');
+        err.message.should.containEql('Unknow Error 405');
         should.not.exists(milestones);
         done();
       });

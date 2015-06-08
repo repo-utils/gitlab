@@ -1,10 +1,14 @@
-/*!
- * gitlab - test/project.test.js
- * Copyright(c) 2012 fengmk2 <fengmk2@gmail.com>
+/**!
+ * node-gitlab - test/project.test.js
+ *
+ * Copyright(c) repo-utils and other contributors.
  * MIT Licensed
+ *
+ * Authors:
+ *   fengmk2 <m@fengmk2.com> (http://fengmk2.com)
  */
 
-"use strict";
+'use strict';
 
 /**
  * Module dependencies.
@@ -54,6 +58,24 @@ describe('project.test.js', function () {
       });
     });
 
+  });
+
+  describe('listEvents()', function () {
+    it('should list current project events', function* () {
+      var events = yield client.thunk.projects.listEvents({id: client.id});
+      events.length.should.above(0);
+      events[0].action_name.should.equal('created');
+    });
+  });
+
+  describe('search()', function () {
+    it('should search and list projects', function* () {
+      var projects = yield client.thunk.projects.search({
+        query: 'node-gitlab-test'
+      });
+      projects.length.should.equal(1);
+      projects[0].name.should.equal('node-gitlab-test');
+    });
   });
 
   describe.skip('client.projects.getByPath()', function () {

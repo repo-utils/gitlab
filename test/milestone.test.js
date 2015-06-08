@@ -18,7 +18,7 @@ var client = require('./client');
 var should = require('should');
 var milestoneId;
 
-describe.only('milestone.test.js', function () {
+describe('milestone.test.js', function () {
   before(function (done) {
     client.createProject(function (err) {
       if (err) {
