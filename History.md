@@ -1,4 +1,10 @@
 
+1.1.0 / 2015-06-11
+==================
+
+ * docs: improve document
+ * feat(issues): add getNote(), updateNote()
+
 1.0.0 / 2014-10-12
 ==================
 
