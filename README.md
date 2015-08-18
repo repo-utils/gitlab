@@ -356,6 +356,58 @@ Parameters:
 ]
 ```
 
+#### client.projects.getLabels({id})
+
+Get the labels for the specified project.
+
+Parameters:
+
+- id (required) - The ID or NAMESPACE/PROJECT_NAME of a project
+
+```json
+[
+  { "name": "Bug", color: "#A8D695" },
+  { "name": "Feature", color: "#5CB85C" }
+]
+```
+
+#### client.projects.createLabel({id, name, color})
+
+Create a label for the specified project.
+
+Parameters:
+
+- id (required) - The ID of a project
+- name (required) - The name of the label
+- color (required) - Color of the label given in 6-digit hex notation with leading '#' sign (e.g. #FFAABB)
+
+```json
+[
+  { "name": "Bug", color: "#A8D695" },
+  { "name": "Feature", color: "#5CB85C" }
+]
+```
+
+#### client.projects.updateLabel({id, name, new_name, color})
+
+Update a label for the specified project.
+
+Parameters:
+
+- id (required) - The ID of a project
+- name (required) - The name of the existing label
+- new_name (optional) - The new name of the label
+- color (optional) - New color of the label given in 6-digit hex notation with leading '#' sign (e.g. #FFAABB)
+
+#### client.projects.deleteLabel({id, name})
+
+Delete a label for the specified project.
+
+Parameters:
+
+- id (required) - The ID of a project
+- name (required) - The name of the label to be deleted
+
 ---
 
 ### Project Members
@@ -498,6 +550,36 @@ Parameters:
 
 - id (required) - The ID or NAMESPACE/PROJECT_NAME of a project
 - branch (required) - The name of the branch.
+
+#### client.repositoryBranches.create({id, branch_name, ref})
+
+Create a repository branch on a project.
+
+Parameters:
+
+- id (required) - The ID or NAMESPACE/PROJECT_NAME of a project
+- branch_name (required) - The name of the branch.
+- ref (required) - Create branch from commit SHA or existing branch.
+
+#### client.repositoryBranches.remove({id, branch})
+
+Delete repository branch
+
+Parameters:
+
+- id (required) - The ID of a project
+- branch (required) - The name of the branch
+
+It return 200 if succeed, 404 if the branch to be deleted does not exist or 400 for other reasons.
+In case of an error, an explaining message is provided.
+
+Success response:
+
+```json
+{
+  "branch_name": "my-removed-branch"
+}
+```
 
 #### client.repositoryBranches.protect({id, branch})
 
