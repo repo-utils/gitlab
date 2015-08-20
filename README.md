@@ -551,6 +551,16 @@ Parameters:
 - id (required) - The ID or NAMESPACE/PROJECT_NAME of a project
 - branch (required) - The name of the branch.
 
+#### client.repositoryBranches.create({id, branch_name, ref})
+
+Create a repository branch on a project.
+
+Parameters:
+
+- id (required) - The ID or NAMESPACE/PROJECT_NAME of a project
+- branch_name (required) - The name of the branch.
+- ref (required) - Create branch from commit SHA or existing branch.
+
 #### client.repositoryBranches.protect({id, branch})
 
 Protects a single branch of a project.
