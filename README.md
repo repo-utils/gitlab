@@ -366,8 +366,8 @@ Parameters:
 
 ```json
 [
-  { name: 'Bug', color: '#A8D695' },
-  { name: 'Feature', color: '#5CB85C' }
+  { "name": "Bug", color: "#A8D695" },
+  { "name": "Feature", color: "#5CB85C" }
 ]
 ```
 
@@ -383,8 +383,8 @@ Parameters:
 
 ```json
 [
-  { name: 'Bug', color: '#A8D695' },
-  { name: 'Feature', color: '#5CB85C' }
+  { "name": "Bug", color: "#A8D695" },
+  { "name": "Feature", color: "#5CB85C" }
 ]
 ```
 
