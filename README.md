@@ -447,6 +447,7 @@ Parameters:
 * `{String}` `id` (required) - The ID or NAMESPACE/PROJECT_NAME of a project
 * `{String}` `key_id` (required) - The ID of a key
 
+```json
 {
   "id": 1,
   "title": "Public key",
