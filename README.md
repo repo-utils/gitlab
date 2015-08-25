@@ -59,7 +59,7 @@ var gitlab = require('node-gitlab');
 
 var client = gitlab.createThunk({
   api: 'https://gitlab.com/api/v3',
-  privateToken: 'your private
+  privateToken: 'your private token'
 });
 
 co(function* () {
