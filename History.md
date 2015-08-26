@@ -1,4 +1,11 @@
 
+1.2.1 / 2015-08-26
+==================
+
+ * Missing code block in README
+ * Fix accidental change in README
+ * Add support for project deploy keys
+
 1.2.0 / 2015-08-26
 ==================
 
