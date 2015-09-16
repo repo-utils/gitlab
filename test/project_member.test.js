@@ -20,6 +20,7 @@ var pedding = require('pedding');
 
 describe('project_member.test.js', function () {
   before(function (done) {
+    this.timeout(10000);
     done = pedding(2, done);
     client.createProject(function (err) {
       if (err) {
@@ -44,7 +45,7 @@ describe('project_member.test.js', function () {
     it('should return a member', function (done) {
       client.projectMembers.get({id: client.id, user_id: 5}, function (err, member) {
         should.not.exists(err);
-        member.should.have.keys('id', 'username', 'name', 'state', 'access_level', 'avatar_url');
+        member.should.have.properties('id', 'username', 'name', 'state', 'access_level', 'avatar_url');
         done();
       });
     });
@@ -58,7 +59,7 @@ describe('project_member.test.js', function () {
         should.not.exists(err);
         members.should.length(2);
         var member = members[0];
-        member.should.have.keys('id', 'username', 'name', 'state', 'access_level', 'avatar_url');
+        member.should.have.properties('id', 'username', 'name', 'state', 'access_level', 'avatar_url');
         done();
       });
     });

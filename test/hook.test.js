@@ -50,7 +50,7 @@ describe('hook.test.js', function () {
     it('should return a hook', function* () {
       var hook = yield client.thunk.hooks.get({ id: client.id, hook_id: hookId });
       hook.id.should.equal(hookId);
-      hook.should.have.keys('id', 'url', 'created_at', 'project_id',
+      hook.should.have.properties('id', 'url', 'created_at', 'project_id',
         'push_events', 'issues_events', 'merge_requests_events', 'tag_push_events');
       hook.push_events.should.be.a.Boolean;
     });
@@ -61,7 +61,7 @@ describe('hook.test.js', function () {
       var hooks = yield client.thunk.hooks.list({id: client.id});
       hooks.length.should.above(0);
       var hook = hooks[0];
-      hook.should.have.keys('id', 'url', 'created_at', 'project_id',
+      hook.should.have.properties('id', 'url', 'created_at', 'project_id',
         'push_events', 'issues_events', 'merge_requests_events', 'tag_push_events');
     });
   });

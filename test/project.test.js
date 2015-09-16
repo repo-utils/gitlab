@@ -26,7 +26,7 @@ describe('project.test.js', function () {
     it('should return a project', function (done) {
       client.projects.get({id: client.id}, function (err, project) {
         should.not.exists(err);
-        project.should.have.keys('id', 'name', 'description', 'default_branch',
+        project.should.have.properties('id', 'name', 'description', 'default_branch',
           'owner',
           'ssh_url_to_repo', 'http_url_to_repo',
           'web_url',
@@ -34,7 +34,7 @@ describe('project.test.js', function () {
           'issues_enabled', 'merge_requests_enabled',
           'wiki_enabled', 'created_at', 'last_activity_at',
           'archived', 'visibility_level', 'snippets_enabled', 'permissions');
-        project.owner.should.have.keys('id', 'username', 'name', 'state', 'avatar_url');
+        project.owner.should.have.properties('id', 'username', 'name', 'state', 'avatar_url');
         done();
       });
     });
@@ -48,12 +48,12 @@ describe('project.test.js', function () {
         should.not.exists(err);
         projects.should.length(1);
         var project = projects[0];
-        // project.should.have.keys('id', 'name', 'description', 'default_branch',
+        // project.should.have.properties('id', 'name', 'description', 'default_branch',
         //   'owner',
         //   'public', 'path', 'path_with_namespace', 'namespace',
         //   'issues_enabled', 'merge_requests_enabled', 'wall_enabled',
         //   'wiki_enabled', 'created_at');
-        project.owner.should.have.keys('id', 'username', 'name', 'state', 'avatar_url');
+        project.owner.should.have.properties('id', 'username', 'name', 'state', 'avatar_url');
         done();
       });
     });
@@ -83,7 +83,7 @@ describe('project.test.js', function () {
       client.projects.getByPath({path: 'fengmk2/node-gitlab-test'}, function (err, project) {
         should.not.exists(err);
         project.id.should.equal(1040);
-        // project.should.have.keys('created_at', 'default_branch', 'description', 'id',
+        // project.should.have.properties('created_at', 'default_branch', 'description', 'id',
         //   'issues_enabled', 'merge_requests_enabled', 'name', 'namespace_id',
         //   'creator_id', 'snippets_enabled', 'public',
         //   'issues_tracker_id', 'issues_tracker', 'last_activity_at',
