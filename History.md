@@ -1,4 +1,10 @@
 
+1.2.2 / 2015-09-17
+==================
+
+ * Remove projects.getByPath, use projects.get({id: 'user/test'}), will auto encode
+ * Fix tests
+
 1.2.1 / 2015-08-26
 ==================
 

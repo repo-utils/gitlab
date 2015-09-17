@@ -46,7 +46,7 @@ describe('milestone.test.js', function () {
     it('should return a milestone', function* () {
       var milestone = yield client.thunk.milestones.get({id: client.id, milestone_id: milestoneId});
       milestone.should.have.property('id');
-      milestone.should.have.keys('id', 'iid', 'project_id', 'title', 'description',
+      milestone.should.have.properties('id', 'iid', 'project_id', 'title', 'description',
         'due_date', 'state', 'updated_at', 'created_at');
     });
   });
@@ -55,7 +55,7 @@ describe('milestone.test.js', function () {
     it('should return a milestone', function* () {
       var milestones = yield client.thunk.milestones.list({id: client.id, per_page: 1});
       milestones.should.length(1);
-      milestones[0].should.have.keys('id', 'iid', 'project_id', 'title', 'description',
+      milestones[0].should.have.properties('id', 'iid', 'project_id', 'title', 'description',
         'due_date', 'state', 'updated_at', 'created_at');
     });
   });
@@ -108,7 +108,7 @@ describe('milestone.test.js', function () {
         state_event: 'close',
       });
 
-      milestone.should.have.keys('id', 'iid', 'project_id', 'title', 'description',
+      milestone.should.have.properties('id', 'iid', 'project_id', 'title', 'description',
         'due_date', 'state', 'updated_at', 'created_at');
       milestone.state.should.equal('closed');
       milestone.due_date.should.equal('2013-02-15');

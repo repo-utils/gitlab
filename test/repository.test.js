@@ -14,6 +14,7 @@ var should = require('should');
 var pedding = require('pedding');
 var client = require('./client');
 
+//FIXME: create trees
 describe.skip('repository.test.js', function () {
 
   describe('client.repository.list()', function () {
@@ -24,7 +25,7 @@ describe.skip('repository.test.js', function () {
         should.exists(tree);
         tree.should.be.instanceof(Array);
         tree.forEach(function (item) {
-          item.should.have.keys('name', 'type', 'mode', 'id');
+          item.should.have.properties('name', 'type', 'mode', 'id');
         });
         done();
       });
@@ -36,7 +37,7 @@ describe.skip('repository.test.js', function () {
         should.exists(tree);
         tree.should.be.instanceof(Array);
         tree.forEach(function (item) {
-          item.should.have.keys('name', 'type', 'mode', 'id');
+          item.should.have.properties('name', 'type', 'mode', 'id');
         });
         done();
       });
@@ -52,7 +53,7 @@ describe.skip('repository.test.js', function () {
         should.exists(tree);
         tree.should.be.instanceof(Array);
         tree.forEach(function (item) {
-          item.should.have.keys('name', 'type', 'mode', 'id');
+          item.should.have.properties('name', 'type', 'mode', 'id');
         });
         done();
       });
@@ -64,7 +65,7 @@ describe.skip('repository.test.js', function () {
         should.exists(tree);
         tree.should.be.instanceof(Array);
         tree.forEach(function (item) {
-          item.should.have.keys('name', 'type', 'mode', 'id');
+          item.should.have.properties('name', 'type', 'mode', 'id');
         });
         done();
       });
@@ -79,7 +80,7 @@ describe.skip('repository.test.js', function () {
         should.exists(branches);
         branches.should.be.instanceof(Array);
         branches.forEach(function (item) {
-          item.should.have.keys('name', 'commit', 'protected');
+          item.should.have.properties('name', 'commit', 'protected');
         });
         done();
       });
@@ -91,7 +92,7 @@ describe.skip('repository.test.js', function () {
       client.repository.getBranch({ id: client.id, branch: 'master' }, function (err, branch) {
         should.not.exists(err);
         should.exists(branch);
-        branch.should.have.keys('name', 'commit', 'protected');
+        branch.should.have.properties('name', 'commit', 'protected');
         branch.name.should.equal('master');
         done();
       });
@@ -113,14 +114,14 @@ describe.skip('repository.test.js', function () {
       client.repository.protectBranch({ id: client.id, branch: 'master' }, function (err, branch) {
         should.not.exists(err);
         should.exists(branch);
-        branch.should.have.keys('name', 'commit', 'protected');
+        branch.should.have.properties('name', 'commit', 'protected');
         branch.name.should.equal('master');
         branch.protected.should.equal(true);
 
         client.repository.protectBranch({ id: client.id, branch: 'master' }, function (err, branch) {
           should.not.exists(err);
           should.exists(branch);
-          branch.should.have.keys('name', 'commit', 'protected');
+          branch.should.have.properties('name', 'commit', 'protected');
           branch.name.should.equal('master');
           branch.protected.should.equal(true);
           done();
@@ -132,14 +133,14 @@ describe.skip('repository.test.js', function () {
       client.repository.unprotectBranch({ id: client.id, branch: 'master' }, function (err, branch) {
         should.not.exists(err);
         should.exists(branch);
-        branch.should.have.keys('name', 'commit', 'protected');
+        branch.should.have.properties('name', 'commit', 'protected');
         branch.name.should.equal('master');
         branch.protected.should.equal(false);
 
         client.repository.unprotectBranch({ id: client.id, branch: 'master' }, function (err, branch) {
           should.not.exists(err);
           should.exists(branch);
-          branch.should.have.keys('name', 'commit', 'protected');
+          branch.should.have.properties('name', 'commit', 'protected');
           branch.name.should.equal('master');
           branch.protected.should.equal(false);
           done();
@@ -175,7 +176,7 @@ describe.skip('repository.test.js', function () {
         should.exists(tags);
         tags.should.be.instanceof(Array);
         tags.forEach(function (item) {
-          item.should.have.keys('name', 'commit', 'protected');
+          item.should.have.properties('name', 'commit', 'protected');
         });
         done();
       });
@@ -190,7 +191,7 @@ describe.skip('repository.test.js', function () {
         should.exists(commits);
         commits.should.be.instanceof(Array);
         commits.forEach(function (item) {
-          item.should.have.keys('short_id', 'title', 'author_name', 'id', 'author_email', 'created_at');
+          item.should.have.properties('short_id', 'title', 'author_name', 'id', 'author_email', 'created_at');
         });
         done();
       });
@@ -201,7 +202,7 @@ describe.skip('repository.test.js', function () {
         commits.should.be.instanceof(Array);
         commits.length.should.above(0);
         commits.forEach(function (item) {
-          item.should.have.keys('short_id', 'title', 'author_name', 'id', 'author_email', 'created_at');
+          item.should.have.properties('short_id', 'title', 'author_name', 'id', 'author_email', 'created_at');
         });
         done();
       });

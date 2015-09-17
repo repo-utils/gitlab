@@ -105,7 +105,7 @@ describe.skip('repository_file.test.js', function () {
       client.repositoryFiles.create(file, function (err, info) {
         should.not.exist(err);
         should.exist(info);
-        info.should.have.keys('file_path', 'branch_name');
+        info.should.have.properties('file_path', 'branch_name');
         info.file_path.should.equal(file.file_path);
         info.branch_name.should.equal(file.branch_name);
         done();
@@ -140,7 +140,7 @@ describe.skip('repository_file.test.js', function () {
       client.repositoryFiles.update(file, function (err, info) {
         should.not.exist(err);
         should.exist(info);
-        info.should.have.keys('file_path', 'branch_name');
+        info.should.have.properties('file_path', 'branch_name');
         info.file_path.should.equal(file.file_path);
         info.branch_name.should.equal(file.branch_name);
         done();
@@ -175,7 +175,7 @@ describe.skip('repository_file.test.js', function () {
       client.repositoryFiles.create(file, function (err, info) {
         should.not.exist(err);
         should.exist(info);
-        info.should.have.keys('file_path', 'branch_name');
+        info.should.have.properties('file_path', 'branch_name');
         info.file_path.should.equal(file.file_path);
         info.branch_name.should.equal(file.branch_name);
         done();
