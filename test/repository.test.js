@@ -14,6 +14,7 @@ var should = require('should');
 var pedding = require('pedding');
 var client = require('./client');
 
+//FIXME: create trees
 describe.skip('repository.test.js', function () {
 
   describe('client.repository.list()', function () {

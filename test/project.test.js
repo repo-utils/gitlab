@@ -39,6 +39,22 @@ describe('project.test.js', function () {
       });
     });
 
+    it('should return a project by path', function (done) {
+      client.projects.get({id: 'fengmk2/node-gitlab-test'}, function (err, project) {
+        should.not.exists(err);
+        project.should.have.properties('id', 'name', 'description', 'default_branch',
+            'owner',
+            'ssh_url_to_repo', 'http_url_to_repo',
+            'web_url',
+            'public', 'path', 'path_with_namespace', 'name_with_namespace', 'namespace',
+            'issues_enabled', 'merge_requests_enabled',
+            'wiki_enabled', 'created_at', 'last_activity_at',
+            'archived', 'visibility_level', 'snippets_enabled', 'permissions');
+        project.owner.should.have.properties('id', 'username', 'name', 'state', 'avatar_url');
+        done();
+      });
+    });
+
   });
 
   describe('client.projects.list()', function () {
@@ -77,20 +93,4 @@ describe('project.test.js', function () {
       projects[0].name.should.equal('node-gitlab-test');
     });
   });
-
-  describe.skip('client.projects.getByPath()', function () {
-    it('should return a project by path', function (done) {
-      client.projects.getByPath({path: 'fengmk2/node-gitlab-test'}, function (err, project) {
-        should.not.exists(err);
-        project.id.should.equal(1040);
-        // project.should.have.properties('created_at', 'default_branch', 'description', 'id',
-        //   'issues_enabled', 'merge_requests_enabled', 'name', 'namespace_id',
-        //   'creator_id', 'snippets_enabled', 'public',
-        //   'issues_tracker_id', 'issues_tracker', 'last_activity_at',
-        //   'path', 'private_flag', 'updated_at', 'wall_enabled', 'wiki_enabled');
-        done();
-      });
-    });
-  });
-
 });

@@ -20,7 +20,6 @@ var pedding = require('pedding');
 
 describe('project_member.test.js', function () {
   before(function (done) {
-    this.timeout(10000);
     done = pedding(2, done);
     client.createProject(function (err) {
       if (err) {
