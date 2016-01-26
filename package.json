@@ -23,7 +23,7 @@
     "co-mocha": "*",
     "contributors": "*",
     "istanbul-harmony": "*",
-    "mocha": "*",
+    "mocha": "2.4.1",
     "pedding": "~1.0.0",
     "should": "~6.0.3"
   },
@@ -33,7 +33,9 @@
     "url": "git://github.com/repo-utils/gitlab.git"
   },
   "keywords": [
-    "gitlab", "gitlab api", "git"
+    "gitlab",
+    "gitlab api",
+    "git"
   ],
   "author": "fengmk2 <fengmk2@gmail.com>",
   "license": "MIT"
