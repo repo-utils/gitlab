@@ -894,6 +894,23 @@ Parameters:
 
 If the operation is successful, 200 and the updated merge request is returned. If an error occurs, an error number and a message explaining the reason is returned.
 
+#### client.mergeRequests.merge({id, merge_request_id})
+
+Merge changes submitted with MR using this API.
+
+Parameters:
+
+- id (required) - The ID of a project
+- merge_request_id (required) - ID of MR
+- merge_commit_message (optional) - Custom merge commit message
+- should_remove_source_branch (optional) - if true removes the source branch
+- merged_when_build_succeeds (optional) - if true the MR is merge when the build succeeds
+
+If merge success you get 200 OK.
+If it has some conflicts and can not be merged - you get 405 and error message 'Branch cannot be merged'.
+If merge request is already merged or closed - you get 405 and error message 'Method Not Allowed'
+If you don't have permissions to accept this merge request - you'll get a 401
+
 #### client.mergeRequests.listNotes({id, merge_request_id})
 
 Gets a list of all notes/comments for a single merge request.
