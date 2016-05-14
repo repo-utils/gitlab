@@ -33,8 +33,12 @@ describe('project.test.js', function () {
           'public', 'path', 'path_with_namespace', 'name_with_namespace', 'namespace',
           'issues_enabled', 'merge_requests_enabled',
           'wiki_enabled', 'created_at', 'last_activity_at',
-          'archived', 'visibility_level', 'snippets_enabled', 'permissions');
-        project.owner.should.have.keys('id', 'username', 'name', 'state', 'avatar_url');
+          'archived', 'visibility_level', 'snippets_enabled', 'permissions',
+					'tag_list', 'builds_enabled', 'shared_runners_enabled', 'creator_id',
+				  'avatar_url', 'star_count', 'forks_count', 'open_issues_count',
+					'runners_token', 'public_builds');
+        project.owner.should.have.keys('id', 'username', 'name', 'state', 'avatar_url',
+					'web_url');
         done();
       });
     });
@@ -53,7 +57,8 @@ describe('project.test.js', function () {
         //   'public', 'path', 'path_with_namespace', 'namespace',
         //   'issues_enabled', 'merge_requests_enabled', 'wall_enabled',
         //   'wiki_enabled', 'created_at');
-        project.owner.should.have.keys('id', 'username', 'name', 'state', 'avatar_url');
+        project.owner.should.have.keys('id', 'username', 'name', 'state', 'avatar_url',
+					'web_url');
         done();
       });
     });
