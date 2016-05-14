@@ -50,8 +50,9 @@ describe('hook.test.js', function () {
     it('should return a hook', function* () {
       var hook = yield client.thunk.hooks.get({ id: client.id, hook_id: hookId });
       hook.id.should.equal(hookId);
-      hook.should.have.keys('id', 'url', 'created_at', 'project_id',
-        'push_events', 'issues_events', 'merge_requests_events', 'tag_push_events');
+      hook.should.have.keys('id', 'url', 'created_at', 'project_id', 'push_events',
+          'issues_events', 'merge_requests_events', 'tag_push_events', 'note_events',
+          'build_events', 'enable_ssl_verification');
       hook.push_events.should.be.a.Boolean;
     });
   });
@@ -62,7 +63,9 @@ describe('hook.test.js', function () {
       hooks.length.should.above(0);
       var hook = hooks[0];
       hook.should.have.keys('id', 'url', 'created_at', 'project_id',
-        'push_events', 'issues_events', 'merge_requests_events', 'tag_push_events');
+          'push_events', 'issues_events', 'merge_requests_events',
+          'tag_push_events', 'note_events', 'build_events',
+          'enable_ssl_verification');
     });
   });
 
@@ -104,8 +107,11 @@ describe('hook.test.js', function () {
 
       yield client.thunk.hooks.remove({id: client.id, hook_id: hook.id});
 
-      var hook = yield client.thunk.hooks.get({id: client.id, hook_id: hook.id});
-      should.not.exist(hook);
+      try {
+        var hook = yield client.thunk.hooks.get({id: client.id, hook_id: hook.id});
+      } catch (err) {
+        err.name.should.equal('Gitlab404Error');
+      }
     });
   });
 });
