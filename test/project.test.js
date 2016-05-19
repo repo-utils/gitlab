@@ -33,8 +33,12 @@ describe('project.test.js', function () {
           'public', 'path', 'path_with_namespace', 'name_with_namespace', 'namespace',
           'issues_enabled', 'merge_requests_enabled',
           'wiki_enabled', 'created_at', 'last_activity_at',
-          'archived', 'visibility_level', 'snippets_enabled', 'permissions');
-        project.owner.should.have.keys('id', 'username', 'name', 'state', 'avatar_url');
+          'archived', 'visibility_level', 'snippets_enabled', 'permissions',
+					'tag_list', 'builds_enabled', 'shared_runners_enabled', 'creator_id',
+				  'avatar_url', 'star_count', 'forks_count', 'open_issues_count',
+					'runners_token', 'public_builds');
+        project.owner.should.have.keys('id', 'username', 'name', 'state', 'avatar_url',
+					'web_url');
         done();
       });
     });
@@ -53,7 +57,8 @@ describe('project.test.js', function () {
         //   'public', 'path', 'path_with_namespace', 'namespace',
         //   'issues_enabled', 'merge_requests_enabled', 'wall_enabled',
         //   'wiki_enabled', 'created_at');
-        project.owner.should.have.keys('id', 'username', 'name', 'state', 'avatar_url');
+        project.owner.should.have.keys('id', 'username', 'name', 'state', 'avatar_url',
+					'web_url');
         done();
       });
     });
@@ -75,21 +80,6 @@ describe('project.test.js', function () {
       });
       projects.length.should.equal(1);
       projects[0].name.should.equal('node-gitlab-test');
-    });
-  });
-
-  describe.skip('client.projects.getByPath()', function () {
-    it('should return a project by path', function (done) {
-      client.projects.getByPath({path: 'fengmk2/node-gitlab-test'}, function (err, project) {
-        should.not.exists(err);
-        project.id.should.equal(1040);
-        // project.should.have.keys('created_at', 'default_branch', 'description', 'id',
-        //   'issues_enabled', 'merge_requests_enabled', 'name', 'namespace_id',
-        //   'creator_id', 'snippets_enabled', 'public',
-        //   'issues_tracker_id', 'issues_tracker', 'last_activity_at',
-        //   'path', 'private_flag', 'updated_at', 'wall_enabled', 'wiki_enabled');
-        done();
-      });
     });
   });
 

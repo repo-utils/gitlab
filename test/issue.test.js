@@ -40,8 +40,8 @@ describe('issue.test.js', function () {
         should.not.exists(err);
         row.id.should.equal(issueId);
         row.should.have.keys('id', 'iid', 'project_id', 'title', 'description', 'labels',
-          'milestone', 'assignee', 'author', 'state',
-          'updated_at', 'created_at');
+          'milestone', 'assignee', 'author', 'state', 'updated_at', 'created_at', 
+          'subscribed', 'user_notes_count');
         done();
       });
     });
@@ -51,8 +51,8 @@ describe('issue.test.js', function () {
       .then(function (row) {
         row.id.should.equal(issueId);
         row.should.have.keys('id', 'iid', 'project_id', 'title', 'description', 'labels',
-          'milestone', 'assignee', 'author', 'state',
-          'updated_at', 'created_at');
+          'milestone', 'assignee', 'author', 'state', 'updated_at', 'created_at', 
+          'subscribed', 'user_notes_count');
         done();
       })
       .catch(done);
@@ -62,8 +62,8 @@ describe('issue.test.js', function () {
       var row = yield client.thunk.issues.get({id: client.id, issue_id: issueId});
       row.id.should.equal(issueId);
       row.should.have.keys('id', 'iid', 'project_id', 'title', 'description', 'labels',
-        'milestone', 'assignee', 'author', 'state',
-        'updated_at', 'created_at');
+        'milestone', 'assignee', 'author', 'state', 'updated_at', 'created_at', 
+        'subscribed', 'user_notes_count');
     });
   });
 
@@ -75,8 +75,8 @@ describe('issue.test.js', function () {
         issues.length.should.above(0);
         var row = issues[0];
         row.should.have.keys('id', 'iid', 'project_id', 'title', 'description', 'labels',
-          'milestone', 'assignee', 'author', 'state',
-          'updated_at', 'created_at');
+          'milestone', 'assignee', 'author', 'state', 'updated_at', 'created_at',
+          'subscribed', 'user_notes_count');
         done();
       });
     });
@@ -139,7 +139,8 @@ describe('issue.test.js', function () {
         should.not.exists(err);
         rows.length.should.above(0);
         var row = rows[0];
-        row.should.have.keys('id', 'body', 'author', 'created_at', 'attachment');
+        row.should.have.keys('id', 'body', 'author', 'created_at', 'attachment',
+             'updated_at', 'system', 'noteable_id', 'noteable_type', 'upvote', 'downvote');
         done();
       });
     });
@@ -148,7 +149,8 @@ describe('issue.test.js', function () {
       var rows = yield client.thunk.issues.listNotes({id: client.id, issue_id: issueId});
       rows.length.should.above(0);
       var row = rows[0];
-      row.should.have.keys('id', 'body', 'author', 'created_at', 'attachment');
+      row.should.have.keys('id', 'body', 'author', 'created_at', 'attachment',
+             'updated_at', 'system', 'noteable_id', 'noteable_type', 'upvote', 'downvote');
     });
   });
 

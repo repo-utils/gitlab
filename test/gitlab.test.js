@@ -43,7 +43,7 @@ describe('gitlab.test.js', function () {
 
     it('should request 404 error', function (done) {
       client.request('get', '/projects/:id/milestones', {id: 99999999}, function (err, milestones) {
-        should.not.exists(err);
+        should.exists(err);
         should.not.exists(milestones);
         done();
       });
