@@ -13,8 +13,8 @@
     "contributors": "contributors -f plain -o AUTHORS"
   },
   "dependencies": {
+    "any-promise": "^1.3.0",
     "debug": "~2.2.0",
-    "native-or-bluebird": "~1.2.0",
     "restful-client": "~1.0.0",
     "thunkify-wrap": "~1.0.4"
   },
@@ -33,7 +33,9 @@
     "url": "git://github.com/repo-utils/gitlab.git"
   },
   "keywords": [
-    "gitlab", "gitlab api", "git"
+    "gitlab",
+    "gitlab api",
+    "git"
   ],
   "author": "fengmk2 <fengmk2@gmail.com>",
   "license": "MIT"
