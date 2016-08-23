@@ -1,4 +1,16 @@
 
+1.3.0 / 2016-08-23
+==================
+
+  * Adds support for MR notes (#20)
+  * Replace depracted package (#24)
+  * removed old test for deprecated gitlab functionality
+  * fixed project tests
+  * Fixed project member test
+  * fixed gitlab test
+  * fixed issue tests
+  * fixed hook tests
+
 1.2.1 / 2015-08-26
 ==================
 
