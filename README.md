@@ -952,6 +952,15 @@ Parameters:
 - note_id (required) - The ID of a note
 - body (required) - The content of a note
 
+#### client.mergeRequests.listCommits({id, merge_request_id})
+
+Gets a list of all commits for a single merge request.
+
+Parameters:
+
+- id (required) - The ID of a project
+- merge_request_id (required) - The ID of a project merge request
+
 ---
 
 ### Milestones
