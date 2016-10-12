@@ -1,4 +1,9 @@
 
+1.4.0 / 2016-10-12
+==================
+
+  * feat: gets a list of all commits for a single merge request. (#25)
+
 1.3.0 / 2016-08-23
 ==================
 
