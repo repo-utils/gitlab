@@ -59,8 +59,8 @@ describe('gitlab.test.js', function () {
       });
     });
 
-    it('should request 405 error when method wrong', function (done) {
-      client.request('post', '/projects/:id/milestones/:milestone_id', {id: 223, milestone_id: 76, title: '123'},
+    it.skip('should request 405 error when method wrong', function (done) {
+      client.request('post', '/projects/:id/milestones/:milestone_id', {id: 1909028, milestone_id: 120370, title: '123'},
       function (err, milestones) {
         should.exists(err);
         err.name.should.equal('Gitlab405Error');
