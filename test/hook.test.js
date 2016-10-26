@@ -52,7 +52,7 @@ describe('hook.test.js', function () {
       hook.id.should.equal(hookId);
       hook.should.have.keys('id', 'url', 'created_at', 'project_id', 'push_events',
           'issues_events', 'merge_requests_events', 'tag_push_events', 'note_events',
-          'build_events', 'enable_ssl_verification');
+          'build_events', 'enable_ssl_verification', 'pipeline_events', 'wiki_page_events');
       hook.push_events.should.be.a.Boolean;
     });
   });
@@ -65,7 +65,7 @@ describe('hook.test.js', function () {
       hook.should.have.keys('id', 'url', 'created_at', 'project_id',
           'push_events', 'issues_events', 'merge_requests_events',
           'tag_push_events', 'note_events', 'build_events',
-          'enable_ssl_verification');
+          'enable_ssl_verification', 'pipeline_events', 'wiki_page_events');
     });
   });
 

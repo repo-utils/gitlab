@@ -41,7 +41,7 @@ describe('issue.test.js', function () {
         row.id.should.equal(issueId);
         row.should.have.keys('id', 'iid', 'project_id', 'title', 'description', 'labels',
           'milestone', 'assignee', 'author', 'state', 'updated_at', 'created_at',
-          'subscribed', 'user_notes_count');
+          'subscribed', 'user_notes_count', 'upvotes', 'downvotes', 'due_date', 'confidential', 'web_url');
         done();
       });
     });
@@ -52,7 +52,7 @@ describe('issue.test.js', function () {
         row.id.should.equal(issueId);
         row.should.have.keys('id', 'iid', 'project_id', 'title', 'description', 'labels',
           'milestone', 'assignee', 'author', 'state', 'updated_at', 'created_at',
-          'subscribed', 'user_notes_count');
+          'subscribed', 'user_notes_count', 'upvotes', 'downvotes', 'due_date', 'confidential', 'web_url');
         done();
       })
       .catch(done);
@@ -63,7 +63,7 @@ describe('issue.test.js', function () {
       row.id.should.equal(issueId);
       row.should.have.keys('id', 'iid', 'project_id', 'title', 'description', 'labels',
         'milestone', 'assignee', 'author', 'state', 'updated_at', 'created_at',
-        'subscribed', 'user_notes_count');
+        'subscribed', 'user_notes_count', 'upvotes', 'downvotes', 'due_date', 'confidential', 'web_url');
     });
   });
 
@@ -76,7 +76,7 @@ describe('issue.test.js', function () {
         var row = issues[0];
         row.should.have.keys('id', 'iid', 'project_id', 'title', 'description', 'labels',
           'milestone', 'assignee', 'author', 'state', 'updated_at', 'created_at',
-          'subscribed', 'user_notes_count');
+          'subscribed', 'user_notes_count', 'upvotes', 'downvotes', 'due_date', 'confidential', 'web_url');
         done();
       });
     });
@@ -140,7 +140,7 @@ describe('issue.test.js', function () {
         rows.length.should.above(0);
         var row = rows[0];
         row.should.have.keys('id', 'body', 'author', 'created_at', 'attachment',
-             'updated_at', 'system', 'noteable_id', 'noteable_type', 'upvote', 'downvote');
+             'updated_at', 'system', 'noteable_id', 'noteable_type', 'upvote?', 'downvote?');
         done();
       });
     });
@@ -150,7 +150,7 @@ describe('issue.test.js', function () {
       rows.length.should.above(0);
       var row = rows[0];
       row.should.have.keys('id', 'body', 'author', 'created_at', 'attachment',
-             'updated_at', 'system', 'noteable_id', 'noteable_type', 'upvote', 'downvote');
+             'updated_at', 'system', 'noteable_id', 'noteable_type', 'upvote?', 'downvote?');
     });
   });
 
