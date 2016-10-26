@@ -76,10 +76,10 @@ describe('project.test.js', function () {
   describe('search()', function () {
     it('should search and list projects', function* () {
       var projects = yield client.thunk.projects.search({
-        query: 'node-gitlab-test'
+        query: client.projectName
       });
       projects.length.should.equal(1);
-      projects[0].name.should.equal('node-gitlab-test');
+      projects[0].name.should.equal(client.projectName);
     });
   });
 

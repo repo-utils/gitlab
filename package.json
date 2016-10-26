@@ -24,6 +24,7 @@
     "contributors": "*",
     "istanbul-harmony": "*",
     "mocha": "*",
+    "objectid": "^3.2.1",
     "pedding": "~1.0.0",
     "should": "~6.0.3"
   },

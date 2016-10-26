@@ -40,7 +40,7 @@ describe('issue.test.js', function () {
         should.not.exists(err);
         row.id.should.equal(issueId);
         row.should.have.keys('id', 'iid', 'project_id', 'title', 'description', 'labels',
-          'milestone', 'assignee', 'author', 'state', 'updated_at', 'created_at', 
+          'milestone', 'assignee', 'author', 'state', 'updated_at', 'created_at',
           'subscribed', 'user_notes_count');
         done();
       });
@@ -51,7 +51,7 @@ describe('issue.test.js', function () {
       .then(function (row) {
         row.id.should.equal(issueId);
         row.should.have.keys('id', 'iid', 'project_id', 'title', 'description', 'labels',
-          'milestone', 'assignee', 'author', 'state', 'updated_at', 'created_at', 
+          'milestone', 'assignee', 'author', 'state', 'updated_at', 'created_at',
           'subscribed', 'user_notes_count');
         done();
       })
@@ -62,7 +62,7 @@ describe('issue.test.js', function () {
       var row = yield client.thunk.issues.get({id: client.id, issue_id: issueId});
       row.id.should.equal(issueId);
       row.should.have.keys('id', 'iid', 'project_id', 'title', 'description', 'labels',
-        'milestone', 'assignee', 'author', 'state', 'updated_at', 'created_at', 
+        'milestone', 'assignee', 'author', 'state', 'updated_at', 'created_at',
         'subscribed', 'user_notes_count');
     });
   });
