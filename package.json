@@ -4,9 +4,9 @@
   "description": "Gitlab API nodejs client.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --harmony -R spec -r co-mocha -t 20000 test/*.test.js",
-    "test-cov": "node --harmony node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- -r co-mocha -t 20000 test/*.test.js",
-    "test-travis": "node --harmony node_modules/.bin/istanbul cover node_modules/.bin/_mocha --report lcovonly -- -r co-mocha -t 20000 test/*.test.js",
+    "test": "mocha --harmony -R spec -r co-mocha -t 40000 test/*.test.js",
+    "test-cov": "node --harmony node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- -r co-mocha -t 40000 test/*.test.js",
+    "test-travis": "node --harmony node_modules/.bin/istanbul cover node_modules/.bin/_mocha --report lcovonly -- -r co-mocha -t 40000 test/*.test.js",
     "jshint": "jshint .",
     "autod": "autod -w --prefix '~'",
     "cnpm": "npm install --registry=https://registry.npm.taobao.org",
@@ -24,6 +24,7 @@
     "contributors": "*",
     "istanbul-harmony": "*",
     "mocha": "*",
+    "objectid": "^3.2.1",
     "pedding": "~1.0.0",
     "should": "~6.0.3"
   },

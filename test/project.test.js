@@ -36,7 +36,8 @@ describe('project.test.js', function () {
           'archived', 'visibility_level', 'snippets_enabled', 'permissions',
 					'tag_list', 'builds_enabled', 'shared_runners_enabled', 'creator_id',
 				  'avatar_url', 'star_count', 'forks_count', 'open_issues_count',
-					'runners_token', 'public_builds');
+					'runners_token', 'public_builds', 'container_registry_enabled', 'lfs_enabled', 'shared_with_groups',
+          'only_allow_merge_if_build_succeeds', 'request_access_enabled');
         project.owner.should.have.keys('id', 'username', 'name', 'state', 'avatar_url',
 					'web_url');
         done();
@@ -76,10 +77,10 @@ describe('project.test.js', function () {
   describe('search()', function () {
     it('should search and list projects', function* () {
       var projects = yield client.thunk.projects.search({
-        query: 'node-gitlab-test'
+        query: client.projectName
       });
       projects.length.should.equal(1);
-      projects[0].name.should.equal('node-gitlab-test');
+      projects[0].name.should.equal(client.projectName);
     });
   });
 
