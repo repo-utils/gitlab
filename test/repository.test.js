@@ -235,5 +235,17 @@ describe.skip('repository.test.js', function () {
       });
     });
   });
-
+  
+  describe('client.repository.archive()', function () {
+    it('should return archive file', function (done) {
+      client.repository.archive({id: 55045, sha: '946579807281bd26b75b91986c78f15ad0bd40f7'}, function (err, raw) {
+        should.not.exists(err);
+        should.exists(raw);
+        should.ok(Buffer.isBuffer(raw));
+        raw.should.be.a.Buffer;
+        raw.length.should.above(0);
+        done();
+      });
+    });
+  });
 });
