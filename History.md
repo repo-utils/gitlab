@@ -1,4 +1,10 @@
 
+1.5.0 / 2017-01-10
+==================
+
+  * feat: Add repository.archive functionality (#29)
+  * test: Fixed Testing (#26)
+
 1.4.0 / 2016-10-12
 ==================
 
