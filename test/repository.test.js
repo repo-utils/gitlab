@@ -248,4 +248,17 @@ describe.skip('repository.test.js', function () {
       });
     });
   });
+  
+  describe('client.repository.compare()', function () {
+    it('should return diffs', function (done) {
+      client.repository.compare({id: 55045, to: 'master', from: '946579807281bd26b75b91986c78f15ad0bd40f7'}, function (err, diffs) {
+        should.not.exists(err);
+        should.exists(diffs);
+        diffs.should.have.keys('commit', 'commits', 'diffs', 'compare_timeout', 'compare_same_ref');
+        diffs.commits.should.be.instanceof(Array);
+        diffs.diffs.should.be.instanceof(Array);
+        done();
+      });
+    });
+  });   
 });
