@@ -19,7 +19,7 @@
     "thunkify-wrap": "~1.0.4"
   },
   "devDependencies": {
-    "autod": "*",
+    "autod": "2.4.2",
     "co-mocha": "*",
     "contributors": "*",
     "istanbul-harmony": "*",
