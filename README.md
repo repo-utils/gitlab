@@ -758,7 +758,7 @@ Parameters:
 }
 ```
 
-## client.repositoryTags.remove({id, tag_name})
+#### client.repositoryTags.remove({id, tag_name})
 
 Deletes a tag of a repository with given name.
 
@@ -767,7 +767,7 @@ Parameters:
 - `id` (required) - The ID of a project
 - `tag_name` (required) - The name of a tag
 
-## client.repositoryTags.createRelease({id, tag_name, description})
+#### client.repositoryTags.createRelease({id, tag_name, description})
 
 Add release notes to the existing git tag. If there
 already exists a release for the given tag, status code `409` is returned.
@@ -785,7 +785,7 @@ Parameters:
 }
 ```
 
-## client.repositoryTags.updateRelease({id, tag_name, description})
+#### client.repositoryTags.updateRelease({id, tag_name, description})
 
 Updates the release notes of a given release.
 
