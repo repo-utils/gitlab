@@ -16,8 +16,66 @@
 
 var should = require('should');
 var client = require('./client');
+var gitlab = require('../');
 
 describe('gitlab.test.js', function () {
+  describe('setAuthentication', function () {
+    var req = {};
+    beforeEach(function () {
+      req = {
+        params: {
+          data: {}
+        }
+      }
+    });
+
+    it('should default to using a private token', function() {
+      var privateToken = 'private';
+      gitlab.prototype.setAuthentication.call({
+        privateToken: privateToken
+      }, req);
+
+      req.params.data.private_token.should.equal(privateToken);
+      req.params.data.should.not.have.keys('access_token');
+    });
+
+    it('should use access token if provided', function() {
+      var accessToken = 'access';
+      gitlab.prototype.setAuthentication.call({
+        accessToken: accessToken
+      }, req);
+
+      req.params.data.access_token.should.equal(accessToken);
+      req.params.data.should.not.have.keys('private_token');
+    });
+
+    it('should prefer already passed private token on the request object', function() {
+      var privateToken = 'private';
+      var existingPrivateToken = 'already-private';
+
+      req.params.data.private_token = existingPrivateToken;
+      gitlab.prototype.setAuthentication.call({
+        privateToken: privateToken
+      }, req);
+
+      req.params.data.private_token.should.equal(existingPrivateToken);
+      req.params.data.should.not.have.keys('access_token');
+    });
+
+    it('should prefer already passed access token on the request object', function() {
+      var accessToken = 'access';
+      var existingAccessToken = 'already-access';
+
+      req.params.data.access_token = existingAccessToken;
+      gitlab.prototype.setAuthentication.call({
+        accessToken: accessToken
+      }, req);
+
+      req.params.data.access_token.should.equal(existingAccessToken);
+      req.params.data.should.not.have.keys('private_token');
+    });
+  });
+
   describe('Client.request()', function () {
     it('should request success', function (done) {
       client.request('get', '/projects', {}, function (err, projects) {
