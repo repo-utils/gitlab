@@ -1,4 +1,10 @@
 
+1.6.1 / 2018-11-27
+==================
+
+**fixes**
+  * [[`4789c4a`](http://github.com/repo-utils/gitlab/commit/4789c4a9595781ac7a3c202e7fc3ea91a467ba84)] - fix: debug CVE-2017-16137 security fix (#50) (fengmk2 <<fengmk2@gmail.com>>)
+
 1.6.0 / 2017-01-11
 ==================
 
