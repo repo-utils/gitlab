@@ -1,0 +1,65 @@
+{
+  "extends": 'usecases/usecase/nodejs',
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "globals": {
+    "describe": true,
+    "it": true,
+    "before": true,
+    "afterEach": true,
+    "beforeEach": true,
+    "after": true
+  },
+  "rules": {
+    "no-bitwise": 2,
+    "camelcase": 0,
+    "curly": 2,
+    "eqeqeq": 2,
+    "guard-for-in": 0,
+    "wrap-iife": 0,
+    "indent": 0,
+    "no-use-before-define": 0,
+    "new-cap": 0,
+    "no-caller": 2,
+    "no-empty": 2,
+    "no-new": 0,
+    "no-plusplus": 0,
+    "quotes": 0,
+    "no-undef": 2,
+    "no-unused-vars": 0,
+    "strict": 0,
+    "max-params": 0,
+    "max-depth": 0,
+    "max-statements": 0,
+    "complexity": 0,
+    "max-len": 0,
+    "semi": 0,
+    "no-cond-assign": [
+      2,
+      "except-parens"
+    ],
+    "no-debugger": 0,
+    "no-eq-null": 0,
+    "no-eval": 0,
+    "no-unused-expressions": 2,
+    "block-scoped-var": 0,
+    "no-iterator": 0,
+    "linebreak-style": 2,
+    "comma-style": [
+      2,
+      "first"
+    ],
+    "no-loop-func": 0,
+    "no-multi-str": 2,
+    "no-proto": 0,
+    "no-script-url": 0,
+    "no-shadow": 0,
+    "dot-notation": 2,
+    "no-new-func": 0,
+    "no-new-wrappers": 0,
+    "no-invalid-this": 2,
+    "require-yield": 2
+  }
+}

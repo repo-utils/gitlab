@@ -8,6 +8,8 @@
     "test-cov": "node --harmony node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- -r co-mocha -t 40000 test/*.test.js",
     "test-travis": "node --harmony node_modules/.bin/istanbul cover node_modules/.bin/_mocha --report lcovonly -- -r co-mocha -t 40000 test/*.test.js",
     "jshint": "jshint .",
+    "eslint": "eslint .", 
+    "eslint:fix": "eslint --fix .",
     "autod": "autod -w --prefix '~'",
     "cnpm": "npm install --registry=https://registry.npm.taobao.org",
     "contributors": "contributors -f plain -o AUTHORS"
