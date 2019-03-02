@@ -14,17 +14,17 @@
  * Module dependencies.
  */
 
-var client = require('./client');
-var should = require('should');
+let client = require('./client');
+let should = require('should');
 
-describe('project.test.js', function () {
+describe('project.test.js', () => {
   before(client.createProject);
   after(client.removeProject);
 
-  describe('client.projects.get()', function () {
+  describe('client.projects.get()', () => {
 
-    it('should return a project', function (done) {
-      client.projects.get({id: client.id}, function (err, project) {
+    it('should return a project', (done) => {
+      client.projects.get({id: client.id}, (err, project) => {
         should.not.exists(err);
         project.should.have.keys('id', 'name', 'description', 'default_branch',
           'owner',
@@ -46,13 +46,13 @@ describe('project.test.js', function () {
 
   });
 
-  describe('client.projects.list()', function () {
+  describe('client.projects.list()', () => {
 
-    it('should return projects', function (done) {
-      client.projects.list({per_page: 1}, function (err, projects) {
+    it('should return projects', (done) => {
+      client.projects.list({per_page: 1}, (err, projects) => {
         should.not.exists(err);
         projects.should.length(1);
-        var project = projects[0];
+        let project = projects[0];
         // project.should.have.keys('id', 'name', 'description', 'default_branch',
         //   'owner',
         //   'public', 'path', 'path_with_namespace', 'namespace',
@@ -66,17 +66,18 @@ describe('project.test.js', function () {
 
   });
 
-  describe('listEvents()', function () {
+  describe('listEvents()', () => {
     it('should list current project events', function* () {
-      var events = yield client.thunk.projects.listEvents({id: client.id});
+      let events = yield client.thunk.projects.listEvents({id: client.id});
       events.length.should.above(0);
       events[0].action_name.should.equal('created');
     });
   });
 
-  describe('search()', function () {
+  /*eslint no-mixed-spaces-and-tabs: ["error", "smart-tabs"]*/
+  describe('search()', () => {
     it('should search and list projects', function* () {
-      var projects = yield client.thunk.projects.search({
+      let projects = yield client.thunk.projects.search({
         query: client.projectName
       });
       projects.length.should.equal(1);

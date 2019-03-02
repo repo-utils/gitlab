@@ -7,24 +7,24 @@
  * Authors:
  *   fengmk2 <m@fengmk2.com> (http://fengmk2.com)
  */
-
+/* eslint-disable no-unused-expressions */
 'use strict';
 
 /**
  * Module dependencies.
  */
 
-var should = require('should');
-var client = require('./client');
+let should = require('should');
+let client = require('./client');
 
-var hookId;
-describe('hook.test.js', function () {
-  before(function (done) {
-    client.createProject(function (err) {
+let hookId;
+describe('hook.test.js', () => {
+  before((done) => {
+    client.createProject((err) => {
       client.hooks.create({
-        id: client.id,
-        url: 'http://gitlab.com/help/api'
-      }, function (err, data) {
+        id: client.id
+        , url: 'http://gitlab.com/help/api'
+      }, (err, data) => {
         if (err) {
           return done(err);
         }
@@ -34,21 +34,21 @@ describe('hook.test.js', function () {
     });
   });
 
-  after(function (done) {
+  after((done) => {
     client.hooks.remove({
-      id: client.id,
-      hook_id: hookId
-    }, function (err) {
+      id: client.id
+      , hook_id: hookId
+    }, (err) => {
       should.not.exist(err);
-      client.removeProject(function () {
+      client.removeProject(() => {
         done();
       });
     });
   });
 
-  describe('client.hooks.get()', function () {
+  describe('client.hooks.get()', () => {
     it('should return a hook', function* () {
-      var hook = yield client.thunk.hooks.get({ id: client.id, hook_id: hookId });
+      let hook = yield client.thunk.hooks.get({id: client.id, hook_id: hookId});
       hook.id.should.equal(hookId);
       hook.should.have.keys('id', 'url', 'created_at', 'project_id', 'push_events',
           'issues_events', 'merge_requests_events', 'tag_push_events', 'note_events',
@@ -57,11 +57,11 @@ describe('hook.test.js', function () {
     });
   });
 
-  describe('client.hooks.list()', function () {
+  describe('client.hooks.list()', () => {
     it('should return hooks', function* () {
-      var hooks = yield client.thunk.hooks.list({id: client.id});
+      let hooks = yield client.thunk.hooks.list({id: client.id});
       hooks.length.should.above(0);
-      var hook = hooks[0];
+      let hook = hooks[0];
       hook.should.have.keys('id', 'url', 'created_at', 'project_id',
           'push_events', 'issues_events', 'merge_requests_events',
           'tag_push_events', 'note_events', 'build_events',
@@ -69,22 +69,22 @@ describe('hook.test.js', function () {
     });
   });
 
-  describe('client.hooks.create(), update(), remove()', function () {
+  describe('client.hooks.create(), update(), remove()', () => {
     it('should create, update, remove a hook', function* () {
-      var hook = yield client.thunk.hooks.create({
-        id: client.id,
-        url: 'http://gitlab.com/help/api'
+      let hook = yield client.thunk.hooks.create({
+        id: client.id
+        , url: 'http://gitlab.com/help/api'
       });
       hook.url.should.equal('http://gitlab.com/help/api');
 
-      var hook = yield client.thunk.hooks.update({
-        id: client.id,
-        hook_id: hook.id,
-        url: hook.url + '/update',
-        merge_requests_events: true,
-        push_events: true,
-        issues_events: true,
-        tag_push_events: true,
+      hook = yield client.thunk.hooks.update({
+        id: client.id
+        , hook_id: hook.id
+        , url: hook.url + '/update'
+        , merge_requests_events: true
+        , push_events: true
+        , issues_events: true
+        , tag_push_events: true,
       });
       hook.url.should.equal('http://gitlab.com/help/api/update');
       hook.merge_requests_events.should.equal(true);
@@ -95,9 +95,9 @@ describe('hook.test.js', function () {
       // url required
       try {
         yield client.thunk.hooks.update({
-          id: client.id,
-          hook_id: hook.id,
-          issues_events: false,
+          id: client.id
+          , hook_id: hook.id
+          , issues_events: false,
         });
         throw new Error('should not run this');
       } catch (err) {
@@ -108,7 +108,7 @@ describe('hook.test.js', function () {
       yield client.thunk.hooks.remove({id: client.id, hook_id: hook.id});
 
       try {
-        var hook = yield client.thunk.hooks.get({id: client.id, hook_id: hook.id});
+        let hook = yield client.thunk.hooks.get({id: client.id, hook_id: hook.id});
       } catch (err) {
         err.name.should.equal('Gitlab404Error');
       }
