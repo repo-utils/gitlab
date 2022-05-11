@@ -14,16 +14,16 @@
  * Module dependencies.
  */
 
-var objectid = require('objectid');
+let objectid = require('objectid');
 
-var gitlab = require('../');
-var config = require('./config');
+let gitlab = require('../');
+let config = require('./config');
 
-var client = gitlab.create(config);
+let client = gitlab.create(config);
 
-client.createProject = function (callback) {
-  client.projectName = 'node-gitlab-test-'+objectid();
-  client._list(function (err) {
+client.createProject = function(callback) {
+  client.projectName = 'node-gitlab-test-' + objectid();
+  client._list((err) => {
     if (err) {
       return client._create(callback);
     }
@@ -31,12 +31,12 @@ client.createProject = function (callback) {
   });
 };
 
-client._list = function (callback) {
-  client.request('get', '/projects', {}, function (err, repos) {
+client._list = function(callback) {
+  client.request('get', '/projects', {}, (err, repos) => {
     if (err) {
       return callback(err);
     }
-    for (var i = 0; i < repos.length; i++) {
+    for (let i = 0; i < repos.length; i++) {
       if (repos[i].name.indexOf('node-gitlab-test') === 0) {
         client.projectName = repos[i].name;
         client.id = repos[i].id;
@@ -48,13 +48,13 @@ client._list = function (callback) {
 };
 
 client._create = function(callback) {
-  client.projectName = 'node-gitlab-test-'+objectid();
+  client.projectName = 'node-gitlab-test-' + objectid();
   client.projects.create({
-    name: client.projectName,
-    issues_enabled: true,
-    merge_requests_enabled: true,
-    public: true
-  }, function (err, data) {
+    name: client.projectName
+    , issues_enabled: true
+    , merge_requests_enabled: true
+    , public: true
+  }, (err, data) => {
     if (err) {
       return callback(err);
     }
@@ -63,13 +63,13 @@ client._create = function(callback) {
   });
 };
 
-client.removeProject = function (callback) {
-  if(!client.id) {
+client.removeProject = function(callback) {
+  if (!client.id) {
     return callback();
   }
   client.projects.remove({
     id: client.id
-  }, function () {
+  }, () => {
     delete client.id;
     callback();
   });

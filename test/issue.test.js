@@ -10,19 +10,19 @@
  * Module dependencies.
  */
 
-var client = require('./client');
-var should = require('should');
+let client = require('./client');
+let should = require('should');
 
-var issueId;
-describe('issue.test.js', function () {
-  before(function (done) {
-    client.createProject(function (err) {
+let issueId;
+describe('issue.test.js', () => {
+  before((done) => {
+    client.createProject((err) => {
       client.issues.create({
-        id: client.id,
-        title: 'test title ' + new Date(),
-        description: '测试 `markdown` \n [abc](/abc)',
-        labels: 'test,gitlabapi'
-      }, function (err, data) {
+        id: client.id
+        , title: 'test title ' + new Date()
+        , description: '测试 `markdown` \n [abc](/abc)'
+        , labels: 'test,gitlabapi'
+      }, (err, data) => {
         if (err) {
           return done(err);
         }
@@ -34,9 +34,9 @@ describe('issue.test.js', function () {
 
   after(client.removeProject);
 
-  describe('client.issues.get()', function () {
-    it('should return a issue', function (done) {
-      client.issues.get({id: client.id, issue_id: issueId}, function (err, row) {
+  describe('client.issues.get()', () => {
+    it('should return a issue', (done) => {
+      client.issues.get({id: client.id, issue_id: issueId}, (err, row) => {
         should.not.exists(err);
         row.id.should.equal(issueId);
         row.should.have.keys('id', 'iid', 'project_id', 'title', 'description', 'labels',
@@ -46,9 +46,9 @@ describe('issue.test.js', function () {
       });
     });
 
-    it('should return issue with promise way', function (done) {
+    it('should return issue with promise way', (done) => {
       client.promise.issues.get({id: client.id, issue_id: issueId})
-      .then(function (row) {
+      .then((row) => {
         row.id.should.equal(issueId);
         row.should.have.keys('id', 'iid', 'project_id', 'title', 'description', 'labels',
           'milestone', 'assignee', 'author', 'state', 'updated_at', 'created_at',
@@ -59,7 +59,7 @@ describe('issue.test.js', function () {
     });
 
     it('should return issue with thunk way', function* () {
-      var row = yield client.thunk.issues.get({id: client.id, issue_id: issueId});
+      let row = yield client.thunk.issues.get({id: client.id, issue_id: issueId});
       row.id.should.equal(issueId);
       row.should.have.keys('id', 'iid', 'project_id', 'title', 'description', 'labels',
         'milestone', 'assignee', 'author', 'state', 'updated_at', 'created_at',
@@ -67,13 +67,13 @@ describe('issue.test.js', function () {
     });
   });
 
-  describe('client.issues.list()', function () {
+  describe('client.issues.list()', () => {
 
-    it('should return issues', function (done) {
-      client.issues.list({id: client.id}, function (err, issues) {
+    it('should return issues', (done) => {
+      client.issues.list({id: client.id}, (err, issues) => {
         should.not.exists(err);
         issues.length.should.above(0);
-        var row = issues[0];
+        let row = issues[0];
         row.should.have.keys('id', 'iid', 'project_id', 'title', 'description', 'labels',
           'milestone', 'assignee', 'author', 'state', 'updated_at', 'created_at',
           'subscribed', 'user_notes_count', 'upvotes', 'downvotes', 'due_date', 'confidential', 'web_url');
@@ -83,25 +83,25 @@ describe('issue.test.js', function () {
 
   });
 
-  describe('client.issues.create(), update()', function () {
-    it('should create, update a issue', function (done) {
+  describe('client.issues.create(), update()', () => {
+    it('should create, update a issue', (done) => {
       client.issues.create({
-        id: client.id,
-        title: 'test title ' + new Date(),
-        description: '测试 `markdown` \n [abc](/abc)',
-        assignee_id: 142,
-        milestone_id: 117,
-        labels: 'test,gitlabapi'
-      }, function (err, row) {
+        id: client.id
+        , title: 'test title ' + new Date()
+        , description: '测试 `markdown` \n [abc](/abc)'
+        , assignee_id: 142
+        , milestone_id: 117
+        , labels: 'test,gitlabapi'
+      }, (err, row) => {
         should.not.exists(err);
         row.project_id.should.equal(client.id);
         row.state.should.equal('opened');
         client.issues.update({
-          id: client.id,
-          issue_id: row.id,
-          title: row.title + ' update',
-          state_event: 'close',
-        }, function (err, row) {
+          id: client.id
+          , issue_id: row.id
+          , title: row.title + ' update'
+          , state_event: 'close',
+        }, (err, row) => {
           should.not.exists(err);
           row.title.should.containEql(' update');
           row.state.should.equal('closed');
@@ -110,21 +110,21 @@ describe('issue.test.js', function () {
       });
     });
 
-    it('should update a close, reopen and close issue', function (done) {
+    it('should update a close, reopen and close issue', (done) => {
       client.issues.update({
-        id: client.id,
-        issue_id: issueId,
-        description: 'need to be closed!',
-        state_event: 'close',
-      }, function (err, row) {
+        id: client.id
+        , issue_id: issueId
+        , description: 'need to be closed!'
+        , state_event: 'close',
+      }, (err, row) => {
         should.not.exists(err);
         row.state.should.equal('closed');
         client.issues.update({
-          id: client.id,
-          issue_id: issueId,
-          description: 'need to be reopen!',
-          state_event: 'reopen',
-        }, function (err, row) {
+          id: client.id
+          , issue_id: issueId
+          , description: 'need to be reopen!'
+          , state_event: 'reopen',
+        }, (err, row) => {
           should.not.exists(err);
           row.state.should.equal('reopened');
           done();
@@ -133,12 +133,12 @@ describe('issue.test.js', function () {
     });
   });
 
-  describe('client.issues.listNotes()', function () {
-    it('should return issue\'s notes', function (done) {
-      client.issues.listNotes({id: client.id, issue_id: issueId}, function (err, rows) {
+  describe('client.issues.listNotes()', () => {
+    it('should return issue\'s notes', (done) => {
+      client.issues.listNotes({id: client.id, issue_id: issueId}, (err, rows) => {
         should.not.exists(err);
         rows.length.should.above(0);
-        var row = rows[0];
+        let row = rows[0];
         row.should.have.keys('id', 'body', 'author', 'created_at', 'attachment',
              'updated_at', 'system', 'noteable_id', 'noteable_type', 'upvote?', 'downvote?');
         done();
@@ -146,16 +146,16 @@ describe('issue.test.js', function () {
     });
 
     it('should return issue\'s notes in thunk way', function* () {
-      var rows = yield client.thunk.issues.listNotes({id: client.id, issue_id: issueId});
+      let rows = yield client.thunk.issues.listNotes({id: client.id, issue_id: issueId});
       rows.length.should.above(0);
-      var row = rows[0];
+      let row = rows[0];
       row.should.have.keys('id', 'body', 'author', 'created_at', 'attachment',
              'updated_at', 'system', 'noteable_id', 'noteable_type', 'upvote?', 'downvote?');
     });
   });
 
-  describe('client.issues.createNote()', function () {
-    it('should create to note', function (done) {
+  describe('client.issues.createNote()', () => {
+    it('should create to note', (done) => {
       client.issues.createNote({
         id: client.id, issue_id: issueId, body: '# h1 哈哈\n fixed #1098, fix #1098 fixes #1098'
       }, done);
