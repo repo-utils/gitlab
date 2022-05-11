@@ -826,6 +826,53 @@ Parameters:
 - note_id (required) - The ID of a note
 - body (required) - The content of a note
 
+#### client.issues.timeEstimate({id, issue_id, duration})
+
+Add a time estimate to an issue. 
+
+Parameters:
+
+- id (required) - The ID of a project
+- issue_id (required) - The ID of an issue
+- duration (required) - The [duration](https://docs.gitlab.com/ce/workflow/time_tracking.html#configuration) in human format. e.g: 3h30m
+
+#### client.issues.resetTimeEstimate({id, issue_id})
+
+Reset the estimated time on an issue.
+
+Parameters:
+
+- id (required) - The ID of a project
+- issue_id (required) - The ID of an issue
+
+#### client.issues.addSpentTime({id, issue_id, duration})
+
+Add a spent time for this issue.
+
+Parameters:
+
+- id (required) - The ID of a project
+- issue_id (required) - The ID of an issue
+- duration (required) - The [duration](https://docs.gitlab.com/ce/workflow/time_tracking.html#configuration) in human format. e.g: 3h30m
+
+#### client.issues.resetSpentTime({id, issue_id})
+
+Reset the spent time on an issue.
+
+Parameters:
+
+- id (required) - The ID of a project
+- issue_id (required) - The ID of an issue
+
+#### client.issues.timeStats({id, issue_id})
+
+Get the time tracking stats for an issue.
+
+Parameters:
+
+- id (required) - The ID of a project
+- issue_id (required) - The ID of an issue
+
 ---
 
 ### Merge Requests
@@ -960,6 +1007,53 @@ Parameters:
 
 - id (required) - The ID of a project
 - merge_request_id (required) - The ID of a project merge request
+
+#### client.mergeRequests.timeEstimate({id, issue_id, duration})
+
+Add a time estimate to a merge request. 
+
+Parameters:
+
+- id (required) - The ID of a project
+- merge_request_id (required) - The ID of a merge request
+- duration (required) - The [duration](https://docs.gitlab.com/ce/workflow/time_tracking.html#configuration) in human format. e.g: 3h30m
+
+#### client.mergeRequests.resetTimeEstimate({id, issue_id})
+
+Reset the estimated time on an issue.
+
+Parameters:
+
+- id (required) - The ID of a project
+- merge_request_id (required) - The ID of a merge request
+
+#### client.mergeRequests.addSpentTime({id, issue_id, duration})
+
+Add a spent time for this issue.
+
+Parameters:
+
+- id (required) - The ID of a project
+- merge_request_id (required) - The ID of a merge request
+- duration (required) - The [duration](https://docs.gitlab.com/ce/workflow/time_tracking.html#configuration) in human format. e.g: 3h30m
+
+#### client.mergeRequests.resetSpentTime({id, issue_id})
+
+Reset the spent time on an issue.
+
+Parameters:
+
+- id (required) - The ID of a project
+- merge_request_id (required) - The ID of a merge request
+
+#### client.mergeRequests.timeStats({id, issue_id})
+
+Get the time tracking stats for an issue.
+
+Parameters:
+
+- id (required) - The ID of a project
+- merge_request_id (required) - The ID of a merge request
 
 ---
 

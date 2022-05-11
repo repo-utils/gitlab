@@ -18,10 +18,10 @@ describe('issue.test.js', function () {
   before(function (done) {
     client.createProject(function (err) {
       client.issues.create({
-        id: client.id,
-        title: 'test title ' + new Date(),
+        id         : client.id,
+        title      : 'test title ' + new Date(),
         description: '测试 `markdown` \n [abc](/abc)',
-        labels: 'test,gitlabapi'
+        labels     : 'test,gitlabapi'
       }, function (err, data) {
         if (err) {
           return done(err);
@@ -86,20 +86,20 @@ describe('issue.test.js', function () {
   describe('client.issues.create(), update()', function () {
     it('should create, update a issue', function (done) {
       client.issues.create({
-        id: client.id,
-        title: 'test title ' + new Date(),
-        description: '测试 `markdown` \n [abc](/abc)',
-        assignee_id: 142,
+        id          : client.id,
+        title       : 'test title ' + new Date(),
+        description : '测试 `markdown` \n [abc](/abc)',
+        assignee_id : 142,
         milestone_id: 117,
-        labels: 'test,gitlabapi'
+        labels      : 'test,gitlabapi'
       }, function (err, row) {
         should.not.exists(err);
         row.project_id.should.equal(client.id);
         row.state.should.equal('opened');
         client.issues.update({
-          id: client.id,
-          issue_id: row.id,
-          title: row.title + ' update',
+          id         : client.id,
+          issue_id   : row.id,
+          title      : row.title + ' update',
           state_event: 'close',
         }, function (err, row) {
           should.not.exists(err);
@@ -112,16 +112,16 @@ describe('issue.test.js', function () {
 
     it('should update a close, reopen and close issue', function (done) {
       client.issues.update({
-        id: client.id,
-        issue_id: issueId,
+        id         : client.id,
+        issue_id   : issueId,
         description: 'need to be closed!',
         state_event: 'close',
       }, function (err, row) {
         should.not.exists(err);
         row.state.should.equal('closed');
         client.issues.update({
-          id: client.id,
-          issue_id: issueId,
+          id         : client.id,
+          issue_id   : issueId,
           description: 'need to be reopen!',
           state_event: 'reopen',
         }, function (err, row) {
@@ -158,6 +158,46 @@ describe('issue.test.js', function () {
     it('should create to note', function (done) {
       client.issues.createNote({
         id: client.id, issue_id: issueId, body: '# h1 哈哈\n fixed #1098, fix #1098 fixes #1098'
+      }, done);
+    });
+  });
+  
+  describe('client.issues.timeEstimate()', function () {
+    it('should add a time estimate', function (done) {
+      client.issues.timeEstimate({
+        id: client.id, issue_id: issueId, duration: '3h30m'
+      }, done);
+    });
+  });
+  
+  describe('client.issues.resetTimeEstimate()', function () {
+    it('should reset the time estimate', function (done) {
+      client.issues.resetTimeEstimate({
+        id: client.id, issue_id: issueId
+      }, done);
+    });
+  });
+  
+  describe('client.issues.addSpentTime()', function () {
+    it('should add a spent time', function (done) {
+      client.issues.addSpentTime({
+        id: client.id, issue_id: issueId, duration: '3h30m'
+      }, done);
+    });
+  });
+  
+  describe('client.issues.resetSpentTime()', function () {
+    it('should reset the spent time', function (done) {
+      client.issues.timeEstimate({
+        id: client.id, issue_id: issueId
+      }, done);
+    });
+  });
+  
+  describe('client.issues.timeStats()', function () {
+    it('should return the time stats', function (done) {
+      client.issues.timeStats({
+        id: client.id, issue_id: issueId
       }, done);
     });
   });
