@@ -6,6 +6,7 @@ gitlab
 [![Test coverage][coveralls-image]][coveralls-url]
 [![Gittip][gittip-image]][gittip-url]
 [![David deps][david-image]][david-url]
+[![David devDeps][david-imageDev]][david-urlDev]
 [![node version][node-image]][node-url]
 [![npm download][download-image]][download-url]
 
@@ -19,6 +20,8 @@ gitlab
 [gittip-url]: https://www.gittip.com/fengmk2/
 [david-image]: https://img.shields.io/david/repo-utils/gitlab.svg?style=flat-square
 [david-url]: https://david-dm.org/repo-utils/gitlab
+[david-imageDev]: https://david-dm.org/repo-utils/gitlab/dev-status.svg?style=flat-square
+[david-urlDev]: https://david-dm.org/repo-utils/gitlab?type=dev
 [node-image]: https://img.shields.io/badge/node.js-%3E=_0.10-green.svg?style=flat-square
 [node-url]: http://nodejs.org/download/
 [download-image]: https://img.shields.io/npm/dm/node-gitlab.svg?style=flat-square
