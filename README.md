@@ -92,6 +92,30 @@ client.milestones.list({id: 1})
 
 @see [Gitlab API document](https://github.com/gitlabhq/gitlabhq/tree/master/doc/api).
 
+### Header
+
+#### client.addHeader(key, value)
+
+Set a header (for example the SUDO header) which will be added to every request.
+
+```js
+client.addHeader('SUDO', 'johnd');
+
+// The note is added by user 'johnd'
+client.issues.createNote({
+  issue_id: 'issue_id',
+  id: 'project_id',
+  body: 'Note from user johnd.'
+});
+```
+#### client.removeHeader(key)
+
+Remove a set header value
+
+```js
+client.removeHeader('SUDO');
+```
+
 ### Project
 
 https://github.com/gitlabhq/gitlabhq/blob/master/doc/api/projects.md
