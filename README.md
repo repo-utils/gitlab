@@ -653,6 +653,157 @@ Parameters:
 
 ---
 
+### Repository Tags
+
+https://github.com/gitlabhq/gitlabhq/blob/master/doc/api/tags.md
+
+#### client.repositoryTags.list({id})
+
+Get a list of repository tags from a project.
+
+Parameters:
+
+- id (required) - The ID or NAMESPACE/PROJECT_NAME of a project
+
+```json
+[
+  {
+    "commit": {
+      "author_name": "John Smith",
+      "author_email": "john@example.com",
+      "authored_date": "2012-05-28T04:42:42-07:00",
+      "committed_date": "2012-05-28T04:42:42-07:00",
+      "committer_name": "Jack Smith",
+      "committer_email": "jack@example.com",
+      "id": "2695effb5807a22ff3d138d593fd856244e155e7",
+      "message": "Initial commit",
+      "parents_ids": [
+        "2a4b78934375d7f53875269ffd4f45fd83a84ebe"
+      ]
+    },
+    "release": {
+      "tag_name": "1.0.0",
+      "description": "Amazing release. Wow"
+    },
+    "name": "v1.0.0",
+    "message": null
+  }
+]
+```
+
+#### client.repositoryTags.get({id, tag_name})
+
+Get a specific repository tag determined by its name.
+
+Parameters:
+
+- id (required) - The ID or NAMESPACE/PROJECT_NAME of a project
+- tag_name (required) - The name of the tag
+
+```json
+{
+  "name": "v5.0.0",
+  "message": null,
+  "commit": {
+    "id": "60a8ff033665e1207714d6670fcd7b65304ec02f",
+    "message": "v5.0.0\n",
+    "parent_ids": [
+      "f61c062ff8bcbdb00e0a1b3317a91aed6ceee06b"
+    ],
+    "authored_date": "2015-02-01T21:56:31.000+01:00",
+    "author_name": "Arthur Verschaeve",
+    "author_email": "contact@arthurverschaeve.be",
+    "committed_date": "2015-02-01T21:56:31.000+01:00",
+    "committer_name": "Arthur Verschaeve",
+    "committer_email": "contact@arthurverschaeve.be"
+  },
+  "release": null
+}
+```
+
+#### client.repositoryTags.create({id, tag_name, ref})
+
+Creates a new tag in the repository that points to the supplied ref.
+
+Parameters:
+
+- id (required) - The ID or NAMESPACE/PROJECT_NAME of a project
+- tag_name (required) - The name of the tag
+- ref (required) - Create tag using commit SHA, another tag name, or branch name.
+- message (optional) -  Creates annotated tag.
+- release_description (optional) - Add release notes to the git tag and store it in the GitLab database.
+
+
+```json
+{
+  "commit": {
+    "author_name": "John Smith",
+    "author_email": "john@example.com",
+    "authored_date": "2012-05-28T04:42:42-07:00",
+    "committed_date": "2012-05-28T04:42:42-07:00",
+    "committer_name": "Jack Smith",
+    "committer_email": "jack@example.com",
+    "id": "2695effb5807a22ff3d138d593fd856244e155e7",
+    "message": "Initial commit",
+    "parents_ids": [
+      "2a4b78934375d7f53875269ffd4f45fd83a84ebe"
+    ]
+  },
+  "release": {
+    "tag_name": "1.0.0",
+    "description": "Amazing release. Wow"
+  },
+  "name": "v1.0.0",
+  "message": null
+}
+```
+
+#### client.repositoryTags.remove({id, tag_name})
+
+Deletes a tag of a repository with given name.
+
+Parameters:
+
+- `id` (required) - The ID of a project
+- `tag_name` (required) - The name of a tag
+
+#### client.repositoryTags.createRelease({id, tag_name, description})
+
+Add release notes to the existing git tag. If there
+already exists a release for the given tag, status code `409` is returned.
+
+Parameters:
+
+- `id` (required) - The ID of a project
+- `tag_name` (required) - The name of a tag
+- `description` (required) - Release notes with markdown support
+
+```json
+{
+  "tag_name": "1.0.0",
+  "description": "Amazing release. Wow"
+}
+```
+
+#### client.repositoryTags.updateRelease({id, tag_name, description})
+
+Updates the release notes of a given release.
+
+Parameters:
+
+- `id` (required) - The ID of a project
+- `tag_name` (required) - The name of a tag
+- `description` (required) - Release notes with markdown support
+
+```json
+{
+  "tag_name": "1.0.0",
+  "description": "Amazing release. Wow"
+}
+```
+
+---
+
 ### Issues
 
 https://github.com/gitlabhq/gitlabhq/blob/master/doc/api/issues.md

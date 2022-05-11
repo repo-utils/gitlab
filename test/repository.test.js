@@ -235,7 +235,7 @@ describe.skip('repository.test.js', function () {
       });
     });
   });
-  
+
   describe('client.repository.archive()', function () {
     it('should return archive file', function (done) {
       client.repository.archive({id: 55045, sha: '946579807281bd26b75b91986c78f15ad0bd40f7'}, function (err, raw) {
@@ -248,7 +248,7 @@ describe.skip('repository.test.js', function () {
       });
     });
   });
-  
+
   describe('client.repository.compare()', function () {
     it('should return diffs', function (done) {
       client.repository.compare({id: 55045, to: 'master', from: '946579807281bd26b75b91986c78f15ad0bd40f7'}, function (err, diffs) {
@@ -260,5 +260,5 @@ describe.skip('repository.test.js', function () {
         done();
       });
     });
-  });   
+  });
 });
